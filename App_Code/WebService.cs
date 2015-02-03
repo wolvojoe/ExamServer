@@ -34,7 +34,8 @@ public class WebService : System.Web.Services.WebService {
 
         Machine.MachineAuthCode = strMachineAuthCode;
         Machine.SelectMachineByCode();
-        string temp = "" + "" + "" + "" + "";
+
+        string letssee = "";
         return Machine;
 
     }
