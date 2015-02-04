@@ -99,7 +99,7 @@ public class Machine
         sqlText = "UPDATE Machine "
                 + "SET "
                 + "Machine_Name = @MachineName, "
-                + "Machine_Active = @MachineActive "
+                + "Machine_Active = @MachineActive, "
                 + "Machine_Auth_Code = @MachineAuthCode "
                 + "WHERE pkMachine_ID = @MachineID";
 

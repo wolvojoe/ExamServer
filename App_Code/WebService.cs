@@ -17,15 +17,7 @@ public class WebService : System.Web.Services.WebService {
     public WebService () {
 
 
-
     }
-
-    [WebMethod]
-    public string HelloWorld() {
-        return "Hello World";
-    }
-    
-
 
     [WebMethod]
     public Machine ValidateClient(string strMachineAuthCode)
@@ -34,7 +26,6 @@ public class WebService : System.Web.Services.WebService {
 
         Machine.MachineAuthCode = strMachineAuthCode;
         Machine.SelectMachineByCode();
-
 
         return Machine;
 
