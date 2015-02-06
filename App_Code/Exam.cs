@@ -70,7 +70,6 @@ public class Exam
             ExamLearningMode = Convert.ToBoolean(dt.Rows[0]["Exam_Learning_Mode"]);
             ExamPassword = Convert.ToString(dt.Rows[0]["Exam_Password"]);
 
-
             return true;
         }
         else
@@ -79,6 +78,116 @@ public class Exam
         }
 
     }
+
+
+
+    public bool UpdateExam()
+    {
+        String sqlText;
+        String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
+
+        SqlConnection connObj = new SqlConnection(connStr);
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = connObj;
+
+        sqlText = "UPDATE Exam "
+                + "SET "
+
+                + "Exam_Name = @ExamName, "
+                + "Exam_Date_Created = @ExamDateCreated, "
+                + "Exam_Active = @ExamActive, "
+                + "Exam_Description = @ExamDescription, "
+                + "Exam_Open_Date = @ExamOpenDate, "
+                + "Exam_Open_Date_Enabled = @ExamOpenDateEnabled, "
+                + "Exam_Closed_Date = @ExamClosedDate, "
+                + "Exam_Closed_Date_Enabled = @ExamClosedDateEnabled, "
+                + "Exam_Time_Limit = @ExamTimeLimit, "
+                + "Exam_Time_Limit_Enabled = @ExamTimeLimitEnabled, "
+                + "Exam_Attempts_Allowed = @ExamAttemptsAllowed, "
+                + "Exam_Questions_Ordered = @ExamQuestionsOrdered, "
+                + "Exam_Shuffle_Answers = @ExamShuffleAnswers, "
+                + "Exam_Learning_Mode = @ExamLearningMode, "
+                + "Exam_Password = @ExamPassword, "
+
+                + "WHERE pkExam_ID = @ExamID";
+
+        cmd.CommandText = sqlText;
+        cmd.Parameters.Clear();
+
+        cmd.Parameters.AddWithValue("@ExamName", ExamName);
+        cmd.Parameters.AddWithValue("@ExamDateCreated", ExamDateCreated);
+        cmd.Parameters.AddWithValue("@ExamActive", ExamActive);
+        cmd.Parameters.AddWithValue("@ExamDescription", ExamDescription);
+        cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
+        cmd.Parameters.AddWithValue("@ExamOpenDateEnabled", ExamOpenDateEnabled);
+        cmd.Parameters.AddWithValue("@ExamClosedDate", ExamClosedDate);
+        cmd.Parameters.AddWithValue("@ExamClosedDateEnabled", ExamClosedDateEnabled);
+        cmd.Parameters.AddWithValue("@ExamTimeLimit", ExamTimeLimit);
+        cmd.Parameters.AddWithValue("@ExamTimeLimitEnabled", ExamTimeLimitEnabled);
+        cmd.Parameters.AddWithValue("@ExamAttemptsAllowed", ExamAttemptsAllowed);
+        cmd.Parameters.AddWithValue("@ExamQuestionsOrdered", ExamQuestionsOrdered);
+        cmd.Parameters.AddWithValue("@ExamShuffleAnswers", ExamShuffleAnswers);
+        cmd.Parameters.AddWithValue("@ExamLearningMode", ExamLearningMode);
+        cmd.Parameters.AddWithValue("@ExamPassword", ExamPassword);
+
+        cmd.Parameters.AddWithValue("@ExamID", ExamID);
+
+
+        try
+        {
+            connObj.Open();
+            cmd.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connObj != null)
+            {
+                connObj.Close();
+            }
+        }
+
+        return true;
+    }
+
+
+
+    public bool InsertExam()
+    {
+        String sqlText;
+        String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
+
+        SqlConnection connObj = new SqlConnection(connStr);
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = connObj;
+
+        sqlText = "INSERT INTO Subject (Subject_Name,Subject_Active) "
+                + "VALUES "
+                + "(@SubjectName,@SubjectActive)";
+
+        cmd.CommandText = sqlText;
+        cmd.Parameters.Clear();
+
+        cmd.Parameters.AddWithValue("@SubjectName", SubjectName);
+        cmd.Parameters.AddWithValue("@SubjectActive", SubjectActive);
+
+        try
+        {
+            connObj.Open();
+            cmd.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connObj != null)
+            {
+                connObj.Close();
+            }
+        }
+
+        return true;
+    }
+
 
 
 
