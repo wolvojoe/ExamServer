@@ -1,42 +1,48 @@
 ﻿
 body {
-    background-color:#E5E5E5;
+    background-color:#FFFFFF;
     font-family: verdana,sans-serif;
-    color: #3D2400;
+    color: #000000;
 }
 
+.Main{
+    height:auto;
+}
 
 .Header{
 
     width:100%;
     height:40px;
-    background-color:#527AA1;
+    background-color:#850825;
 
 }
 
 h1 {
     margin:0;
+    color: #FFFFFF;
 }
 
 
 h2 {
     margin:0;
+    color: #FFFFFF;
 }
 
 .LoginBox{
     border:solid;
-    border-color:#527AA1;
+    border-color:#850825;
+    background-color:#CBCBCB;
     width:400px;
     height:200px;
     margin-top:50px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .LoginHeader{
-    height:30px;
-    background-color:#527AA1;
+    padding:2px;
+    height:40px;
+    background-color:#850825;
 }
 
 .Row{
@@ -59,20 +65,32 @@ h2 {
 .TextBox{
     width:150px;
     height:20px;
-    border:none;
 }
 
-.Button{
-    width:50px;
-    height:20px;
-    background-color:
+.Button {
+  font-family: Arial;
+  color:#FFFFFF;
+  font-size: 14px;
+  background: #850825;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border:none;
+  float:right;
 }
+
+.Button:hover {
+  color: #000000;
+  background: #de8a9d;
+  text-decoration: none;
+  cursor:pointer;
+}
+
 
 
 .Footer{
-    position: fixed;
-    bottom: 0;
+
+    margin-top:50px;
     width:100%;
     height:80px;
-    background-color:#527AA1;
+    background-color:#850825;
 }

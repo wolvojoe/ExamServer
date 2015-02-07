@@ -29,7 +29,7 @@
         </div>
 
         <div class="Row">
-            <div class="RowContent">
+            <div class="RowValue">
                 <asp:Button ID="btnLogin" runat="server" Text="Login" class="Button"/>
             </div>
         </div>
