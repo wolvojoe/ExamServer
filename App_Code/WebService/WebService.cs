@@ -19,8 +19,21 @@ public class WebService : System.Web.Services.WebService {
 
     }
 
+
     [WebMethod]
-    public Machine ValidateClient(string strMachineAuthCode)
+    public Student ValidateStudent(string strStudentEmail, string strStudentPassword)
+    {
+        var Student = new Student();
+
+        Student.StudentEmail = strStudentEmail;
+        Student.StudentPassword = strStudentPassword;
+
+        return Student;
+    }
+
+
+    [WebMethod]
+    public Machine ValidateMachine(string strMachineAuthCode)
     {
         var Machine = new Machine();
 
@@ -28,6 +41,20 @@ public class WebService : System.Web.Services.WebService {
         Machine.SelectMachineByCode();
 
         return Machine;
-
     }
+
+
+    [WebMethod]
+    public Exam SelectExam(int intExamID)
+    {
+        var Exam = new Exam();
+
+        Exam.ExamID = intExamID;
+        Exam.SelectExamByID();
+
+        return Exam;
+    }
+
+
+
 }

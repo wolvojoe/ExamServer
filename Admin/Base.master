@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Base.master.cs" Inherits="Admin_Base" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>ExamServer</title>
+    <link href="StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="Header">
+        <h1>        
+            <asp:ContentPlaceHolder id="MainHeader" runat="server">
+                
+            </asp:ContentPlaceHolder>
+        </h1>
+
+
+
+    </div>
+
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="MainContent" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+    <div class="Footer">
+
+    </div>
+
+
+</body>
+</html>
