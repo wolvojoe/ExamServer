@@ -128,7 +128,6 @@ public class Answer
         cmd.Parameters.AddWithValue("@AnswerOrder", AnswerOrder);
         cmd.Parameters.AddWithValue("@AnswerCorrect", AnswerCorrect);
         cmd.Parameters.AddWithValue("@QuestionID", QuestionID);
-        cmd.Parameters.AddWithValue("@AnswerID", AnswerID);
 
         try
         {

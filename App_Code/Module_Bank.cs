@@ -6,43 +6,42 @@ using System.Web.Configuration;
 using System.Web.Security;
 
 /// <summary>
-/// Summary description for Result_Answer
+/// Summary description for Module_Bank
 /// </summary>
-public class Result_Answer
+public class Module_Bank
 {
 
-    public int ResultAnswerID;
-    public string ResultAnswerText;
-    public int ResultID;
-    public int AnswerID;
+    public int ModuleBankID;
+    public int ModuleID;
+    public int ExamID;
 
-	public Result_Answer()
+	public Module_Bank()
 	{
 
 	}
 
-    public bool SelectResultAnswerByID()
+
+    public bool SelectModuleBankByID()
     {
         string sqlText = String.Empty;
 
         sqlText = "SELECT * "
-                + "FROM Result_Answer "
-                + "WHERE pkResult_Answer_ID = @ResultAnswerID";
+                + "FROM Module_Bank "
+                + "WHERE pkModule_Bank_ID = @ModuleBankID";
 
         var dt = new DataTable();
         using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
-            adapter.SelectCommand.Parameters.AddWithValue("@ResultAnswerID", AnswerID);
+            adapter.SelectCommand.Parameters.AddWithValue("@ModuleBankID", ModuleBankID);
             adapter.Fill(dt);
         }
 
         if (dt.Rows.Count == 1)
         {
-            ResultAnswerID = Convert.ToInt32(dt.Rows[0]["pkResult_Answer_ID"]);
-            ResultAnswerText = Convert.ToString(dt.Rows[0]["Result_Answer_Text"]);
-            ResultID = Convert.ToInt32(dt.Rows[0]["fkResult_ID"]);
-            AnswerID = Convert.ToInt32(dt.Rows[0]["fkQuestion_ID"]);
+            ModuleBankID = Convert.ToInt32(dt.Rows[0]["pkModule_Bank_ID"]);
+            ModuleID = Convert.ToInt32(dt.Rows[0]["fkModule_ID"]);
+            ExamID = Convert.ToInt32(dt.Rows[0]["fkExam_ID"]);
 
 
             return true;
@@ -56,7 +55,7 @@ public class Result_Answer
 
 
 
-    public bool UpdateResultAnswer()
+    public bool UpdateModuleBank()
     {
         String sqlText;
         String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
@@ -66,20 +65,18 @@ public class Result_Answer
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "UPDATE Result_Answer "
+        sqlText = "UPDATE Module_Bank "
                 + "SET "
-                + "Result_Answer_Text = @ResultAnswerText, "
-                + "fkResult_ID = @ResultID, "
-                + "fkAnswer_ID = @AnswerID "
-                + "WHERE pkResult_Answer_ID = @ResultAnswerID";
+                + "fkModule_ID = @ModuleID, "
+                + "fkExam_ID = @ExamID "
+                + "WHERE pkModule_Bank_ID = @ModuleBankID";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
-        cmd.Parameters.AddWithValue("@ResultAnswerText", ResultAnswerText);
-        cmd.Parameters.AddWithValue("@ResultID", ResultID);
-        cmd.Parameters.AddWithValue("@AnswerID", AnswerID);
-        cmd.Parameters.AddWithValue("@ResultAnswerID", ResultAnswerID);
+        cmd.Parameters.AddWithValue("@ModuleID", ModuleID);
+        cmd.Parameters.AddWithValue("@ExamID", ExamID);
+        cmd.Parameters.AddWithValue("@ModuleBankID", ModuleBankID);
 
         try
         {
@@ -99,7 +96,8 @@ public class Result_Answer
 
 
 
-    public bool InsertResultAnswer()
+
+    public bool InsertModuleBank()
     {
         String sqlText;
         String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
@@ -109,16 +107,15 @@ public class Result_Answer
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Result_Answer (Result_Answer_Text, fkResultID, fkAnswerID) "
+        sqlText = "INSERT INTO Module_Bank (fkModule_ID, fkExam_ID) "
                 + "VALUES "
-                + "(@ResultAnswerText, @ResultID, @AnswerID)";
+                + "(@ModuleID, @ExamID)";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
-        cmd.Parameters.AddWithValue("@ResultAnswerText", ResultAnswerText);
-        cmd.Parameters.AddWithValue("@ResultID", ResultID);
-        cmd.Parameters.AddWithValue("@AnswerID", AnswerID);
+        cmd.Parameters.AddWithValue("@ModuleID", ModuleID);
+        cmd.Parameters.AddWithValue("@ExamID", ExamID);
 
         try
         {
@@ -135,6 +132,8 @@ public class Result_Answer
 
         return true;
     }
+
+
 
 
 }
