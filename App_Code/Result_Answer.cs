@@ -6,48 +6,44 @@ using System.Web.Configuration;
 using System.Web.Security;
 
 /// <summary>
-/// Summary description for Answer
+/// Summary description for Result_Answer
 /// </summary>
-public class Answer
+public class Result_Answer
 {
 
+    public int ResultAnswerID;
+    public string ResultAnswerText;
+    public int ResultID;
     public int AnswerID;
-    public string AnswerName;
-    public string AnswerDescription;
-    public int AnswerOrder;
-    public bool AnswerCorrect;
-    public int QuestionID;
 
-	public Answer()
+	public Result_Answer()
 	{
 
 	}
 
-
-    public bool SelectAnswerByID()
+    public bool SelectResultAnswerByID()
     {
         string sqlText = String.Empty;
 
         sqlText = "SELECT * "
-                + "FROM Answer "
-                + "WHERE pkAnswer_ID = @AnswerID";
+                + "FROM Result_Answer "
+                + "WHERE pkResult_Answer_ID = @ResultAnswerID";
 
         var dt = new DataTable();
         using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
-            adapter.SelectCommand.Parameters.AddWithValue("@AnswerID", AnswerID);
+            adapter.SelectCommand.Parameters.AddWithValue("@ResultAnswerID", AnswerID);
             adapter.Fill(dt);
         }
 
         if (dt.Rows.Count == 1)
         {
-            AnswerID = Convert.ToInt32(dt.Rows[0]["pkAnswer_ID"]);
-            AnswerName = Convert.ToString(dt.Rows[0]["Answer_Name"]);
-            AnswerDescription = Convert.ToString(dt.Rows[0]["Answer_Description"]);
-            AnswerOrder = Convert.ToInt32(dt.Rows[0]["Answer_Order"]);
-            AnswerCorrect = Convert.ToBoolean(dt.Rows[0]["Answer_Correct"]);
-            QuestionID = Convert.ToInt32(dt.Rows[0]["fkQuestion_ID"]);
+            ResultAnswerID = Convert.ToInt32(dt.Rows[0]["pkResult_Answer_ID"]);
+            ResultAnswerText = Convert.ToString(dt.Rows[0]["Result_Answer_Text"]);
+            ResultID = Convert.ToInt32(dt.Rows[0]["fkResult_ID"]);
+            AnswerID = Convert.ToInt32(dt.Rows[0]["fkQuestion_ID"]);
+
 
             return true;
         }
@@ -59,7 +55,8 @@ public class Answer
     }
 
 
-    public bool UpdateAnswer()
+
+    public bool UpdateResultAnswer()
     {
         String sqlText;
         String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
@@ -69,24 +66,20 @@ public class Answer
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "UPDATE Answer "
+        sqlText = "UPDATE Result_Answer "
                 + "SET "
-                + "Answer_Name = @AnswerName, "
-                + "Answer_Description = @AnswerDescription, "
-                + "Answer_Order = @AnswerOrder, "
-                + "Answer_Correct = @AnswerCorrect, "
-                + "fkQuestion_ID = @QuestionID "
-                + "WHERE pkAnswer_ID = @AnswerID";
+                + "Result_Answer_Text = @ResultAnswerText, "
+                + "fkResult_ID = @ResultID, "
+                + "fkAnswer_ID = @AnswerID "
+                + "WHERE pkResult_Answer_ID = @ResultAnswerID";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
-        cmd.Parameters.AddWithValue("@AnswerName", AnswerName);
-        cmd.Parameters.AddWithValue("@AnswerDescription", AnswerDescription);
-        cmd.Parameters.AddWithValue("@AnswerOrder", AnswerOrder);
-        cmd.Parameters.AddWithValue("@AnswerCorrect", AnswerCorrect);
-        cmd.Parameters.AddWithValue("@QuestionID", QuestionID);
+        cmd.Parameters.AddWithValue("@ResultAnswerText", ResultAnswerText);
+        cmd.Parameters.AddWithValue("@ResultID", ResultID);
         cmd.Parameters.AddWithValue("@AnswerID", AnswerID);
+        cmd.Parameters.AddWithValue("@ResultAnswerID", ResultAnswerID);
 
         try
         {
@@ -106,7 +99,7 @@ public class Answer
 
 
 
-    public bool InsertAnswer()
+    public bool InsertResultAnswer()
     {
         String sqlText;
         String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
@@ -145,5 +138,6 @@ public class Answer
 
         return true;
     }
+
 
 }
