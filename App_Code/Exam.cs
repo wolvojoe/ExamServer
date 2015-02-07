@@ -162,15 +162,34 @@ public class Exam
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Subject (Subject_Name,Subject_Active) "
+        sqlText = "INSERT INTO Subject (Exam_Name, Exam_Date_Created, Exam_Active, Exam_Description, "
+                + "Exam_Open_Date, Exam_Open_Date_Enabled, Exam_Closed_Date, Exam_Closed_Date_Enabled, "
+                + "Exam_Time_Limit, Exam_Time_Limit_Enabled, Exam_Attempts_Allowed, Exam_Questions_Ordered, "
+                + "Exam_Shuffle_Answers, Exam_Learning_Mode, Exam_Password) "
                 + "VALUES "
-                + "(@SubjectName,@SubjectActive)";
+                + "(@ExamName, @ExamDateCreated, @ExamActive, @ExamDescription, @ExamOpenDate, @ExamOpenDateEnabled, "
+                + "@ExamClosedDate, @ExamClosedDateEnabled, @ExamTimeLimit, @ExamTimeLimitEnabled, @ExamAttemptsAllowed, "
+                + "@ExamQuestionsOrdered, @ExamShuffleAnswers, @ExamLearningMode, @ExamPassword)";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
-        cmd.Parameters.AddWithValue("@SubjectName", SubjectName);
-        cmd.Parameters.AddWithValue("@SubjectActive", SubjectActive);
+        cmd.Parameters.AddWithValue("@ExamName", ExamName);
+        cmd.Parameters.AddWithValue("@ExamDateCreated", ExamDateCreated);
+        cmd.Parameters.AddWithValue("@ExamActive", ExamActive);
+        cmd.Parameters.AddWithValue("@ExamDescription", ExamDescription);
+        cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
+        cmd.Parameters.AddWithValue("@ExamOpenDateEnabled", ExamOpenDateEnabled);
+        cmd.Parameters.AddWithValue("@ExamClosedDate", ExamClosedDate);
+        cmd.Parameters.AddWithValue("@ExamClosedDateEnabled", ExamClosedDateEnabled);
+        cmd.Parameters.AddWithValue("@ExamTimeLimit", ExamTimeLimit);
+        cmd.Parameters.AddWithValue("@ExamTimeLimitEnabled", ExamTimeLimitEnabled);
+        cmd.Parameters.AddWithValue("@ExamAttemptsAllowed", ExamAttemptsAllowed);
+        cmd.Parameters.AddWithValue("@ExamQuestionsOrdered", ExamQuestionsOrdered);
+        cmd.Parameters.AddWithValue("@ExamShuffleAnswers", ExamShuffleAnswers);
+        cmd.Parameters.AddWithValue("@ExamLearningMode", ExamLearningMode);
+        cmd.Parameters.AddWithValue("@ExamPassword", ExamPassword);
+
 
         try
         {
