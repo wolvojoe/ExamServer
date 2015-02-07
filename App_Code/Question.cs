@@ -118,15 +118,18 @@ public class Question
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Group (Group_Name,Group_Active) "
+        sqlText = "INSERT INTO Question (Question_Name,Question_Description, Question_Active, fkModule_ID, fkQuestionType_ID) "
                 + "VALUES "
-                + "(@GroupName,@GroupActive)";
+                + "(@QuestionName,@QuestionDescription, @QuestionActive, @ModuleID, @QuestionTypeID)";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
-        cmd.Parameters.AddWithValue("@GroupName", GroupName);
-        cmd.Parameters.AddWithValue("@GroupActive", GroupActive);
+        cmd.Parameters.AddWithValue("@QuestionName", QuestionName);
+        cmd.Parameters.AddWithValue("@QuestionDescription", QuestionDescription);
+        cmd.Parameters.AddWithValue("@QuestionActive", QuestionActive);
+        cmd.Parameters.AddWithValue("@ModuleID", ModuleID);
+        cmd.Parameters.AddWithValue("@QuestionTypeID", QuestionTypeID);
 
         try
         {
