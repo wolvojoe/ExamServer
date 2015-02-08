@@ -158,7 +158,7 @@ public class Admin
         sqlText = "INSERT INTO Admin (Admin_First_Name, Admin_Last_Name, Admin_Email, " 
                 + "Admin_Password, Admin_Active) "
                 + "VALUES "
-                + "(@AnswerName,@AnswerDescription, @AnswerOrder, @AnswerCorrect @QuestionID)";
+                + "(@AdminFirstName,@AdminLastName, @AdminEmail, @AdminPassword, @AdminActive)";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();

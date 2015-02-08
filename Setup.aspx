@@ -41,7 +41,7 @@
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtPassword" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" CssClass="TextBox" TextMode="Password"></asp:TextBox>
             </div>
         </div>
 
