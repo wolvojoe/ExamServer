@@ -14,9 +14,24 @@ public partial class Login : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        Admin AdminLogin = new Admin();
+        Hash HashPassword = new Hash();
 
+        AdminLogin.AdminEmail = txtEmail.Text.Trim();
+        AdminLogin.AdminPassword = HashPassword.HashString(txtPassword.Text);
 
-        Session.Add("Admin", auth);
-        Response.Redirect("app/provider/home.aspx", false);
+        bool LoginResult;
+        LoginResult = AdminLogin.SelectAdminByEmailAndPassword();
+
+        if (LoginResult == true)
+        {
+            Session.Add("Admin", AdminLogin);
+            Response.Redirect("admin/dashboard.aspx", false);
+        }
+        else
+        {
+
+        }
+
     }
 }

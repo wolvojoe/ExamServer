@@ -25,7 +25,7 @@ public class Admin
 	}
 
 
-    public bool SelectAnswerByID()
+    public bool SelectAdminByID()
     {
         string sqlText = String.Empty;
 
@@ -37,18 +37,18 @@ public class Admin
         using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
-            adapter.SelectCommand.Parameters.AddWithValue("@AnswerID", AnswerID);
+            adapter.SelectCommand.Parameters.AddWithValue("@AdminID", AdminID);
             adapter.Fill(dt);
         }
 
         if (dt.Rows.Count == 1)
         {
-            AnswerID = Convert.ToInt32(dt.Rows[0]["pkAnswer_ID"]);
-            AnswerName = Convert.ToString(dt.Rows[0]["Answer_Name"]);
-            AnswerDescription = Convert.ToString(dt.Rows[0]["Answer_Description"]);
-            AnswerOrder = Convert.ToInt32(dt.Rows[0]["Answer_Order"]);
-            AnswerCorrect = Convert.ToBoolean(dt.Rows[0]["Answer_Correct"]);
-            QuestionID = Convert.ToInt32(dt.Rows[0]["fkQuestion_ID"]);
+            AdminID = Convert.ToInt32(dt.Rows[0]["pkAdmin_ID"]);
+            AdminFirstName = Convert.ToString(dt.Rows[0]["Admin_First_Name"]);
+            AdminLastName = Convert.ToString(dt.Rows[0]["Admin_Last_Name"]);
+            AdminEmail = Convert.ToString(dt.Rows[0]["Admin_Email"]);
+            AdminPassword = Convert.ToString(dt.Rows[0]["Admin_Password"]);
+            AdminActive = Convert.ToBoolean(dt.Rows[0]["Admin_Active"]);
 
             return true;
         }
@@ -58,6 +58,46 @@ public class Admin
         }
 
     }
+
+
+    public bool SelectAdminByEmailAndPassword()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Admin "
+                + "WHERE Admin_Email = @AdminEmail and Admin_Password = @AdminPassword";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@AdminEmail", AdminEmail);
+            adapter.SelectCommand.Parameters.AddWithValue("@AdminPassword", AdminPassword);
+            adapter.Fill(dt);
+        }
+
+        if (dt.Rows.Count == 1)
+        {
+            AdminID = Convert.ToInt32(dt.Rows[0]["pkAdmin_ID"]);
+            AdminFirstName = Convert.ToString(dt.Rows[0]["Admin_First_Name"]);
+            AdminLastName = Convert.ToString(dt.Rows[0]["Admin_Last_Name"]);
+            AdminEmail = Convert.ToString(dt.Rows[0]["Admin_Email"]);
+            AdminPassword = Convert.ToString(dt.Rows[0]["Admin_Password"]);
+            AdminActive = Convert.ToBoolean(dt.Rows[0]["Admin_Active"]);
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+
+
 
 
 }
