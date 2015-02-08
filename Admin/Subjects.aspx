@@ -12,13 +12,8 @@
         </div>
 
         <div class="Row">
-            <div class="RowContent">
-                <asp:Label ID="lblSiteName" runat="server" Text="Site Name:"></asp:Label>
-            </div>
-
-            <div class="RowValue">
-                <asp:TextBox ID="txtSiteName" runat="server" CssClass="TextBox"></asp:TextBox>
-            </div>
+            <asp:GridView ID="gvSubjects" runat="server" AllowPaging="True">
+            </asp:GridView>
         </div>
 
         <div class="SubHeader">

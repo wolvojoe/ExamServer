@@ -15,6 +15,10 @@ public partial class Admin_Subjects : System.Web.UI.Page
 
     private void GetSubjects()
     {
+        var AllSubjects = new Subject();
+
+        gvSubjects.DataSource = AllSubjects.SelectAllSubjects();
+        gvSubjects.DataBind();
 
     }
 

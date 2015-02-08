@@ -130,4 +130,24 @@ public class Subject
         return true;
     }
 
+
+    public DataTable SelectAllSubjects()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Subject "
+                + "ORDER BY Subject_Name";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@SubjectID", SubjectID);
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
 }
