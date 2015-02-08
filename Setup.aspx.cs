@@ -9,12 +9,12 @@ public partial class Setup_Setup : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var SiteName = new Setting();
+        var SiteSetup = new Setting();
 
-        SiteName.SettingID = 2;
-        SiteName.SelectSettingByID();
+        SiteSetup.SettingID = 2;
+        SiteSetup.SelectSettingByID();
 
-        if(SiteName.SettingValue != "0")
+        if (SiteSetup.SettingValue != "0")
         {
             Response.Redirect("~/Login.aspx");
         }
@@ -22,6 +22,30 @@ public partial class Setup_Setup : System.Web.UI.Page
 
     protected void btnCreate_Click(object sender, EventArgs e)
     {
+        //Save site name in setting table
+        var SiteName = new Setting();
+        SiteName.SettingID = 1;
+        SiteName.SelectSettingByID();
+        SiteName.SettingValue = txtSiteName.Text.Trim();
+        SiteName.UpdateSetting();
+
+        //Insert the first admin user
+        var AdminUser = new Admin();
+        var Hash = new Hash();
+        AdminUser.AdminEmail = txtEmail.Text.Trim();
+        AdminUser.AdminPassword = Hash.HashString(txtPassword.Text);
+        AdminUser.AdminFirstName = txtFirstName.Text.Trim();
+        AdminUser.AdminLastName = txtLastName.Text.Trim();
+        AdminUser.AdminActive = true;
+        AdminUser.InsertAdmin();
+
+        //Set the setup setting to true
+        var SiteSetup = new Setting();
+        SiteSetup.SettingID = 2;
+        SiteSetup.SelectSettingByID();
+        SiteSetup.SettingValue = "1";
+        SiteSetup.UpdateSetting();
+
 
     }
 

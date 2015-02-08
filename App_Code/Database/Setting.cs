@@ -55,4 +55,86 @@ public class Setting
     }
 
 
+
+    public bool UpdateSetting()
+    {
+        String sqlText;
+        String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
+
+        SqlConnection connObj = new SqlConnection(connStr);
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = connObj;
+
+        sqlText = "UPDATE Setting "
+                + "SET "
+                + "Setting_Name = @SettingName, "
+                + "Setting_Value = @SettingValue, "
+                + "Setting_Description = @SettingDescription "
+                + "WHERE pkSetting_ID = @SettingID";
+
+        cmd.CommandText = sqlText;
+        cmd.Parameters.Clear();
+
+        cmd.Parameters.AddWithValue("@SettingName", SettingName);
+        cmd.Parameters.AddWithValue("@SettingValue", SettingValue);
+        cmd.Parameters.AddWithValue("@SettingDescription", SettingDescription);
+        cmd.Parameters.AddWithValue("@SettingID", SettingID);
+
+        try
+        {
+            connObj.Open();
+            cmd.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connObj != null)
+            {
+                connObj.Close();
+            }
+        }
+
+        return true;
+    }
+
+
+
+    public bool InsertSetting()
+    {
+        String sqlText;
+        String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
+
+        SqlConnection connObj = new SqlConnection(connStr);
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = connObj;
+
+        sqlText = "INSERT INTO Setting (Setting_Name, Setting_Value, Setting_Description) "
+                + "VALUES "
+                + "(@SettingName, @SettingValue, @SettingDescription)";
+
+        cmd.CommandText = sqlText;
+        cmd.Parameters.Clear();
+
+        cmd.Parameters.AddWithValue("@SettingName", SettingName);
+        cmd.Parameters.AddWithValue("@SettingValue", SettingValue);
+        cmd.Parameters.AddWithValue("@SettingDescription", SettingDescription);
+
+        try
+        {
+            connObj.Open();
+            cmd.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connObj != null)
+            {
+                connObj.Close();
+            }
+        }
+
+        return true;
+    }
+
+
 }

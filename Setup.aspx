@@ -46,6 +46,27 @@
         </div>
 
         <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblFirstName" runat="server" Text="First Name:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblLastName" runat="server" Text="Last Name:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox"></asp:TextBox>
+            </div>
+        </div>
+
+
+        <div class="Row">
             <div class="RowValue">
                 <asp:Button ID="btnCreate" runat="server" Text="Create" class="Button" OnClick="btnCreate_Click"/>
             </div>
