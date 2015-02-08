@@ -11,25 +11,35 @@
 
     <div class="Main">
         <div class="Header">
-            <h1>        
-                <asp:ContentPlaceHolder id="MainHeader" runat="server">
-                
-                </asp:ContentPlaceHolder>
-            </h1>
 
+            <asp:ContentPlaceHolder id="MainHeader" runat="server">
+                
+            </asp:ContentPlaceHolder>
+
+            <div class="HeaderBlack">
+                <h1>        
+                    <asp:ContentPlaceHolder id="MainNavigation" runat="server">
+                
+                    </asp:ContentPlaceHolder>
+
+                </h1>
+            </div>
 
 
         </div>
 
         <form id="form1" runat="server">
         <div>
+
             <asp:ContentPlaceHolder id="MainContent" runat="server">
         
             </asp:ContentPlaceHolder>
+
         </div>
         </form>
 
         <div class="Footer">
+
 
         </div>
     </div>

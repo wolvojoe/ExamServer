@@ -3,6 +3,7 @@ body {
     background-color:#FFFFFF;
     font-family: verdana,sans-serif;
     color: #000000;
+    margin:0px;
 }
 
 .Main{
@@ -12,8 +13,15 @@ body {
 .Header{
 
     width:100%;
-    height:40px;
+    height:120px;
     background-color:#850825;
+
+}
+
+.HeaderBlack{
+    width:100%;
+    height:60px;
+    background-color:#808080;
 
 }
 
@@ -63,7 +71,7 @@ h2 {
 }
 
 .TextBox{
-    width:150px;
+    width:180px;
     height:20px;
 }
 
@@ -88,9 +96,16 @@ h2 {
 
 
 .Footer{
+    position: fixed;
+    bottom: 0px;
+
+    border-top:solid;
+    border-color:#850825;
+    border-width:5px;
 
     margin-top:50px;
     width:100%;
-    height:80px;
-    background-color:#850825;
+    height:150px;
+    background-color:#808080;
 }
+
