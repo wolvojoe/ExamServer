@@ -12,7 +12,9 @@ public partial class Admin_Admin : System.Web.UI.MasterPage
     {
         try
         {
-            if(Session["Admin"] == "1")
+            var AdminLogin = Session["Admin"] as Admin;
+
+            if (AdminLogin.AdminID > 0)
             {
 
             }

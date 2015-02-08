@@ -1,10 +1,49 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Base.master" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_Admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainHeader" Runat="Server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainNavigation" Runat="Server">
+
+<div id="wrap">
+		  <ul class="navbar">
+			 <li><a href="dashboard.aspx">Dashboard</a></li>
+			 <li><a href="#">Subjects</a>
+				<ul>
+				   <li><a href="#">Data Listing</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="#">Exams</a>
+				<ul>
+				   <li><a href="#" >Ad Hoc Report</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="#">Students</a>
+				<ul>
+				   <li><a href="#">Business Dashboard</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="#">Results</a>
+				<ul>
+				   <li><a href="#">Database CRUD</a></li>
+				</ul>         
+			 </li>
+			 <li><a href="#">Site Settings</a>
+
+			 </li>
+		  </ul>
+</div>
 
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
 
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+    </asp:ContentPlaceHolder>
 </asp:Content>
 
