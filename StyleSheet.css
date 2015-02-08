@@ -4,6 +4,7 @@ body {
     font-family: verdana,sans-serif;
     color: #000000;
     margin:0px;
+    min-width:1024px;
 }
 
 .Main{
@@ -52,7 +53,7 @@ h2 {
 .SubHeader{
     padding:2px;
     height:40px;
-    background-color:#850825;
+    background-color:#808080;
 }
 
 .Row{
@@ -89,8 +90,8 @@ h2 {
 }
 
 .Button:hover {
-  color: #000000;
-  background: #de8a9d;
+  color: #ffffff;
+  background: #356CA3;
   text-decoration: none;
   cursor:pointer;
 }
@@ -126,6 +127,20 @@ h2 {
 }
 
 
+.WideContent
+{
+    padding-bottom:5px;
+    border:solid;
+    border-color:#850825;
+    background-color:#CBCBCB;
+    min-height:200px;
+    margin-top:10px;
+    margin-bottom:50px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
 
 
 /* Navigation Bar */
@@ -150,7 +165,7 @@ h2 {
 
 .navbar li 	{
 	height: auto;
-	width: 150px;  /* Each menu item is 150px wide */
+	width: 120px;  /* Each menu item is 150px wide */
 	float: left;  /* This lines up the menu items horizontally */
 	text-align: center;  /* All text is placed in the center of the box */
 	list-style: none;  /* Removes the default styling (bullets) for the list */
@@ -192,6 +207,8 @@ h2 {
 	border-bottom: 1px solid #850825; 
 }
 				
-.navbar li ul li a:hover	{background-color: #366b82;}
+.navbar li ul li a:hover	{background-color: #356CA3;}
+
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
  

@@ -12,28 +12,26 @@
 <div id="wrap">
 		  <ul class="navbar">
 			 <li><a href="dashboard.aspx">Dashboard</a></li>
-			 <li><a href="#">Subjects</a>
+			 <li><a href="#">Questions</a>
 				<ul>
-				   <li><a href="#">Data Listing</a></li>
+				   <li><a href="subjects.aspx">Subjects</a></li>
+                   <li><a href="#">Modules</a></li>
+                   <li><a href="#">Questions</a></li>
 				</ul>         
 			 </li>
-			 <li><a href="#">Exams</a>
-				<ul>
-				   <li><a href="#" >Ad Hoc Report</a></li>
-				</ul>         
+			 <li><a href="#">Exams</a>     
 			 </li>
 			 <li><a href="#">Students</a>
 				<ul>
-				   <li><a href="#">Business Dashboard</a></li>
+				   <li><a href="#">Groups</a></li>
+                   <li><a href="#">Students</a></li>
 				</ul>         
 			 </li>
-			 <li><a href="#">Results</a>
-				<ul>
-				   <li><a href="#">Database CRUD</a></li>
-				</ul>         
+			 <li><a href="#">Results</a>        
 			 </li>
 			 <li><a href="#">Site Settings</a>
-
+			 </li>
+             <li><a href="logout.aspx">Logout</a>
 			 </li>
 		  </ul>
 </div>

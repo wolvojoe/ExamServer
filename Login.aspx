@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Base.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainHeader" Runat="Server">
-    <asp:Label ID="lblHeaderText" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblPageTitle" runat="server" Text=""></asp:Label>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainNavigation" Runat="Server">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" required="required"></asp:TextBox>
             </div>
         </div>
         <div class="Row">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtPassword" runat="server" CssClass="TextBox" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" CssClass="TextBox" TextMode="Password" required="required"></asp:TextBox>
             </div>
         </div>
 

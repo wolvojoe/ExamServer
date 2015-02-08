@@ -1,15 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Base.master" AutoEventWireup="true" CodeFile="Setup.aspx.cs" Inherits="Setup_Setup" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="Subjects.aspx.cs" Inherits="Admin_Subjects" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainHeader" Runat="Server">
-        <asp:Label ID="lblPageTitle" runat="server" Text=""></asp:Label>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+    <asp:Label ID="lblPageTitle" runat="server" Text=""></asp:Label>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainNavigation" Runat="Server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" Runat="Server">
 
-    <div class="Content">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <div class="WideContent">
         <div class="SubHeader">
-            <h2>Site Details</h2>
+            <h2>Subjects</h2>
         </div>
 
         <div class="Row">
@@ -23,7 +22,7 @@
         </div>
 
         <div class="SubHeader">
-            <h2>Admin Register</h2>
+            <h2>New Subject</h2>
         </div>
 
         <div class="Row">
@@ -69,7 +68,7 @@
 
         <div class="Row">
             <div class="RowValue">
-                <asp:Button ID="btnCreate" runat="server" Text="Create" class="Button" OnClick="btnCreate_Click"/>
+                <asp:Button ID="btnCreate" runat="server" Text="Create" class="Button" />
             </div>
         </div>
 

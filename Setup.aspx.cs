@@ -18,6 +18,8 @@ public partial class Setup_Setup : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx");
         }
+
+        lblPageTitle.Text = "Initial Setup";
     }
 
     protected void btnCreate_Click(object sender, EventArgs e)

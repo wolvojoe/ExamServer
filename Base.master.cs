@@ -14,6 +14,6 @@ public partial class Admin_Base : System.Web.UI.MasterPage
         SiteName.SettingID = 1;
         SiteName.SelectSettingByID();
 
-        lblSiteName.Text = SiteName.SettingValue;
+        lblSiteName.Text = SiteName.SettingValue + " - ";
     }
 }
