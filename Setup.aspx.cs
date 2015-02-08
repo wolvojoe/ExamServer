@@ -5,15 +5,25 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_Base : System.Web.UI.MasterPage
+public partial class Setup_Setup : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         var SiteName = new Setting();
 
-        SiteName.SettingID = 1;
+        SiteName.SettingID = 2;
         SiteName.SelectSettingByID();
 
-        lblSiteName.Text = SiteName.SettingValue;
+        if(SiteName.SettingValue != "0")
+        {
+            Response.Redirect("~/Login.aspx");
+        }
     }
+
+    protected void btnCreate_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
 }

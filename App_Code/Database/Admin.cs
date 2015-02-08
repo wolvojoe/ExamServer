@@ -98,6 +98,91 @@ public class Admin
 
 
 
+    public bool UpdateAdmin()
+    {
+        String sqlText;
+        String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
 
+        SqlConnection connObj = new SqlConnection(connStr);
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = connObj;
+
+        sqlText = "UPDATE Admin "
+                + "SET "
+                + "Admin_First_Name = @AdminFirstName, "
+                + "Admin_Last_Name = @AdminLastName, "
+                + "Admin_Email = @AdminEmail, "
+                + "Admin_Password = @AdminPassword, "
+                + "Admin_Active = @AdminActive "
+                + "WHERE pkAdmin_ID = @AdminID";
+
+        cmd.CommandText = sqlText;
+        cmd.Parameters.Clear();
+
+        cmd.Parameters.AddWithValue("@AdminFirstName", AdminFirstName);
+        cmd.Parameters.AddWithValue("@AdminLastName", AdminLastName);
+        cmd.Parameters.AddWithValue("@AdminEmail", AdminEmail);
+        cmd.Parameters.AddWithValue("@AdminPassword", AdminPassword);
+        cmd.Parameters.AddWithValue("@AdminActive", AdminActive);
+        cmd.Parameters.AddWithValue("@AdminID", AdminID);
+
+        try
+        {
+            connObj.Open();
+            cmd.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connObj != null)
+            {
+                connObj.Close();
+            }
+        }
+
+        return true;
+    }
+
+
+
+    public bool InsertAdmin()
+    {
+        String sqlText;
+        String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
+
+        SqlConnection connObj = new SqlConnection(connStr);
+
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = connObj;
+
+        sqlText = "INSERT INTO Admin (Admin_First_Name, Admin_Last_Name, Admin_Email, " 
+                + "Admin_Password, Admin_Active) "
+                + "VALUES "
+                + "(@AnswerName,@AnswerDescription, @AnswerOrder, @AnswerCorrect @QuestionID)";
+
+        cmd.CommandText = sqlText;
+        cmd.Parameters.Clear();
+
+        cmd.Parameters.AddWithValue("@AdminFirstName", AdminFirstName);
+        cmd.Parameters.AddWithValue("@AdminLastName", AdminLastName);
+        cmd.Parameters.AddWithValue("@AdminEmail", AdminEmail);
+        cmd.Parameters.AddWithValue("@AdminPassword", AdminPassword);
+        cmd.Parameters.AddWithValue("@AdminActive", AdminActive);
+
+        try
+        {
+            connObj.Open();
+            cmd.ExecuteNonQuery();
+        }
+        finally
+        {
+            if (connObj != null)
+            {
+                connObj.Close();
+            }
+        }
+
+        return true;
+    }
 
 }

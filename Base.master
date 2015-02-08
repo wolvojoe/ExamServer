@@ -12,19 +12,19 @@
     <div class="Main">
         <div class="Header">
 
-            <asp:ContentPlaceHolder id="MainHeader" runat="server">
-                
-            </asp:ContentPlaceHolder>
-
             <div class="HeaderBlack">
                 <h1>        
-                    <asp:ContentPlaceHolder id="MainNavigation" runat="server">
+                    <asp:Label ID="lblSiteName" runat="server" Text=""></asp:Label>
+
+                    <asp:ContentPlaceHolder id="MainHeader" runat="server">
                 
                     </asp:ContentPlaceHolder>
 
                 </h1>
             </div>
-
+                <asp:ContentPlaceHolder id="MainNavigation" runat="server">
+                
+                </asp:ContentPlaceHolder>
 
         </div>
 

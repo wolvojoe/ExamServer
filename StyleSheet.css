@@ -27,12 +27,14 @@ body {
 
 h1 {
     margin:0;
+    margin-left: 5px;
     color: #FFFFFF;
 }
 
 
 h2 {
     margin:0;
+    margin-left: 5px;
     color: #FFFFFF;
 }
 
@@ -47,7 +49,7 @@ h2 {
     margin-right: auto;
 }
 
-.LoginHeader{
+.SubHeader{
     padding:2px;
     height:40px;
     background-color:#850825;
@@ -96,8 +98,7 @@ h2 {
 
 
 .Footer{
-    position: fixed;
-    bottom: 0px;
+
 
     border-top:solid;
     border-color:#850825;
@@ -109,3 +110,17 @@ h2 {
     background-color:#808080;
 }
 
+
+.Content
+{
+    padding-bottom:5px;
+    border:solid;
+    border-color:#850825;
+    background-color:#CBCBCB;
+    width:800px;
+    min-height:200px;
+    margin-top:50px;
+    margin-bottom:50px;
+    margin-left: auto;
+    margin-right: auto;
+}
