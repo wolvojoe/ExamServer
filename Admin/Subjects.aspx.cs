@@ -10,8 +10,9 @@ public partial class Admin_Subjects : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         lblPageTitle.Text = "Subjects";
-    }
 
+        GetSubjects();
+    }
 
     private void GetSubjects()
     {
@@ -19,6 +20,15 @@ public partial class Admin_Subjects : System.Web.UI.Page
 
         gvSubjects.DataSource = AllSubjects.SelectAllSubjects();
         gvSubjects.DataBind();
+
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        var NewSubject = new Subject();
+        NewSubject.SubjectName = txtName.Text.Trim();
+        NewSubject.SubjectActive = chkActive.Checked;
+        NewSubject.InsertSubject();
 
     }
 

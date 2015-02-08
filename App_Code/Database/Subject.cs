@@ -143,7 +143,6 @@ public class Subject
         using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
-            adapter.SelectCommand.Parameters.AddWithValue("@SubjectID", SubjectID);
             adapter.Fill(dt);
         }
 

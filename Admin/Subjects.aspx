@@ -22,48 +22,27 @@
 
         <div class="Row">
             <div class="RowContent">
-                <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
+                <asp:Label ID="lblName" runat="server" Text="Name:"></asp:Label>
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="txtName" runat="server" CssClass="TextBox"></asp:TextBox>
             </div>
         </div>
 
         <div class="Row">
             <div class="RowContent">
-                <asp:Label ID="lblPassword" runat="server" Text="Password:"></asp:Label>
+                <asp:Label ID="lblActive" runat="server" Text="Active:"></asp:Label>
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtPassword" runat="server" CssClass="TextBox" TextMode="Password"></asp:TextBox>
+                <asp:CheckBox ID="chkActive" runat="server" />  
             </div>
         </div>
 
         <div class="Row">
-            <div class="RowContent">
-                <asp:Label ID="lblFirstName" runat="server" Text="First Name:"></asp:Label>
-            </div>
-
             <div class="RowValue">
-                <asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox"></asp:TextBox>
-            </div>
-        </div>
-
-        <div class="Row">
-            <div class="RowContent">
-                <asp:Label ID="lblLastName" runat="server" Text="Last Name:"></asp:Label>
-            </div>
-
-            <div class="RowValue">
-                <asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox"></asp:TextBox>
-            </div>
-        </div>
-
-
-        <div class="Row">
-            <div class="RowValue">
-                <asp:Button ID="btnCreate" runat="server" Text="Create" class="Button" />
+                <asp:Button ID="btnSave" runat="server" Text="Create" class="Button" OnClick="btnSave_Click" />
             </div>
         </div>
 
