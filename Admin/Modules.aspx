@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="Subjects.aspx.cs" Inherits="Admin_Subjects" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="Modules.aspx.cs" Inherits="Admin_Modules" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <asp:Label ID="lblPageTitle" runat="server" Text=""></asp:Label>
@@ -8,16 +8,16 @@
 
     <div class="WideContent">
         <div class="SubHeader">
-            <h2>Subjects</h2>
+            <h2>Modules</h2>
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvSubjects" runat="server" AllowPaging="True">
+            <asp:GridView ID="gvModules" runat="server" AllowPaging="True">
             </asp:GridView>
         </div>
 
         <div class="SubHeader">
-            <h2>New Subject</h2>
+            <h2>New Module</h2>
         </div>
 
         <div class="Row">

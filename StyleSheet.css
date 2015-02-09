@@ -188,8 +188,6 @@ h2 {
 
 .navbar a {
     padding: 18px 0; /* Adds a padding on the top and bottom so the text appears centered vertically */
-    border-left: 1px solid #850825; /* Creates a border in a slightly lighter shade of blue than the background.  Combined with the right border, this creates a nice effect. */
-    border-right: 1px solid #850825; /* Creates a border in a slightly darker shade of blue than the background.  Combined with the left border, this creates a nice effect. */
     text-decoration: none; /* Removes the default hyperlink styling. */
     color: white; /* Text color is white */
     display: block;
@@ -212,10 +210,7 @@ h2 {
  .navbar li ul li {background-color: #850825;}
  
  .navbar li ul li a 	{
-	border-left: 1px solid #850825; 
-	border-right: 1px solid #850825; 
-	border-top: 1px solid #850825; 
-	border-bottom: 1px solid #850825; 
+
 }
 				
 .navbar li ul li a:hover	{background-color: #356CA3;}
@@ -223,3 +218,14 @@ h2 {
 /*////////////////////////////////////////////////////////////////////////////////////*/
 
  
+
+table, th, td {
+   margin: 5px;
+   border: 2px solid #808080;
+   width: 750px;
+   margin-top:10px;
+   margin-bottom:10px;
+   margin-left: auto;
+   margin-right: auto;
+} 
+

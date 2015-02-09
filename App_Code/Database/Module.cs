@@ -133,4 +133,25 @@ public class Module
         return true;
     }
 
+
+    public DataTable SelectAllModules()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Module "
+                + "ORDER BY Module_Name";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
+
+
 }
