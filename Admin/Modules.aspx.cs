@@ -12,6 +12,13 @@ public partial class Admin_Modules : System.Web.UI.Page
         lblPageTitle.Text = "Modules";
 
         GetModules();
+
+        var SubjectList = new Subject();
+        dpSubject.DataSource = SubjectList.SelectAllSubjects();
+        dpSubject.DataTextField = "Subject_Name";
+        dpSubject.DataValueField = "pkSubject_ID";
+        dpSubject.DataBind();
+
     }
 
     private void GetModules()
@@ -28,7 +35,7 @@ public partial class Admin_Modules : System.Web.UI.Page
         var NewModule = new Module();
         NewModule.ModuleName = txtName.Text.Trim();
         NewModule.ModuleActive = chkActive.Checked;
-        NewModule.SubjectID = "";
+        NewModule.SubjectID = Convert.ToInt32(dpSubject.SelectedValue);
         NewModule.InsertModule();
 
     }

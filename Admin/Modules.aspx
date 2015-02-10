@@ -32,6 +32,16 @@
 
         <div class="Row">
             <div class="RowContent">
+                <asp:Label ID="lblSubject" runat="server" Text="Subject:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:DropDownList ID="dpSubject" runat="server" CssClass="DropDown"></asp:DropDownList>
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
                 <asp:Label ID="lblActive" runat="server" Text="Active:"></asp:Label>
             </div>
 
