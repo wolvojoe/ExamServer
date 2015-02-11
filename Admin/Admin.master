@@ -29,7 +29,7 @@
 			 </li>
 			 <li><a href="#">Results</a>        
 			 </li>
-			 <li><a href="#">Site Settings</a>
+			 <li><a href="SiteSettings.aspx">Site Settings</a>
 			 </li>
              <li><a href="logout.aspx">Logout</a>
 			 </li>
