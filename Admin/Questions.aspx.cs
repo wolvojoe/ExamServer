@@ -11,4 +11,13 @@ public partial class Admin_Questions : System.Web.UI.Page
     {
 
     }
+
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+
+
+    }
+
+
 }

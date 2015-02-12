@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Configuration;
 using System.Web.Security;
+using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for Module
@@ -11,10 +12,11 @@ using System.Web.Security;
 public class Module
 {
 
-    public int ModuleID;
-    public string ModuleName;
-    public bool ModuleActive;
-    public int SubjectID;
+    public int ModuleID { get; set; }
+    public string ModuleName { get; set; }
+    public bool ModuleActive { get; set; }
+    public int SubjectID { get; set; }
+
 
 	public Module()
 	{
@@ -140,6 +142,8 @@ public class Module
 
         sqlText = "SELECT * "
                 + "FROM Module "
+                + "JOIN Subject "
+                + "ON fkSubject_ID = pkSubject_ID "
                 + "ORDER BY Module_Name";
 
         var dt = new DataTable();

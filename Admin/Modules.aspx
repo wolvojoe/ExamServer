@@ -12,7 +12,20 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvModules" runat="server" AllowPaging="True">
+            <asp:GridView ID="gvModules" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>
+                    <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>
+                    <asp:BoundField HeaderText="Active" DataField="Module_Active"/>
+
+                    <asp:TemplateField HeaderText="Module Name">
+                      <ItemTemplate>
+                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit" NavigateUrl='<%# Eval("pkModule_ID", "modules.aspx?ID={0}") %>'></asp:HyperLink>
+                      </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+
             </asp:GridView>
         </div>
 
