@@ -198,7 +198,7 @@ height: 26px;
     display: block;
 }
 
- .navbar li:hover, a:hover {background-color: #356CA3;} 
+ .navbar li:hover {background-color: #356CA3;} 
 
 
  .navbar li ul 	{
@@ -234,3 +234,8 @@ table, th, td {
    margin-right: auto;
 } 
 
+.TableImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

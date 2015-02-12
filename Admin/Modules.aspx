@@ -18,9 +18,11 @@
                     <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>
                     <asp:BoundField HeaderText="Active" DataField="Module_Active"/>
 
-                    <asp:TemplateField HeaderText="Module Name">
+                    <asp:TemplateField HeaderText="Edit">
                       <ItemTemplate>
-                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit" NavigateUrl='<%# Eval("pkModule_ID", "modules.aspx?ID={0}") %>'></asp:HyperLink>
+                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit"  NavigateUrl='<%# Eval("pkModule_ID", "modules.aspx?ID={0}") %>'>
+                           <img class="TableImage" src="../Images/png/wrench-3x.png"/>
+                       </asp:HyperLink>
                       </ItemTemplate>
                     </asp:TemplateField>
 
