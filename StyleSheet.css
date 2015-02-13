@@ -234,11 +234,11 @@ table, th, td {
    margin-right: auto;
    background-color:#ffffff;
    text-align:center;
-   
+   padding:5px;
 } 
 
 th{
-    height:28px;
+    height:20px;
     background-color:#ffffff;
 }
 
