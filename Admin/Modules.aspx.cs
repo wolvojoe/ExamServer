@@ -11,8 +11,11 @@ public partial class Admin_Modules : System.Web.UI.Page
     {
         lblPageTitle.Text = "Modules";
 
-        GetModules();
-        GetSubjectList();
+        if(IsPostBack == false)
+        {
+            GetModules();
+            GetSubjectList();
+        }
 
         if (Request.QueryString["ID"] != null && IsPostBack == false)
         {
@@ -26,8 +29,6 @@ public partial class Admin_Modules : System.Web.UI.Page
 
         }
 
-
-
     }
 
     private void GetSubjectList()
@@ -37,16 +38,33 @@ public partial class Admin_Modules : System.Web.UI.Page
         dpSubject.DataTextField = "Subject_Name";
         dpSubject.DataValueField = "pkSubject_ID";
         dpSubject.DataBind();
+
+        dpSearchSubject.DataSource = SubjectList.SelectAllSubjects();
+        dpSearchSubject.DataTextField = "Subject_Name";
+        dpSearchSubject.DataValueField = "pkSubject_ID";
+        dpSearchSubject.DataBind();
+
+
     }
 
     private void GetModules()
     {
         var AllModules = new Module();
 
-        gvModules.DataSource = AllModules.SelectAllModules();
+        gvModules.DataSource = AllModules.SelectAllModules(0);
         gvModules.DataBind();
 
     }
+
+    protected void SearchModules(object sender, EventArgs e)
+    {
+        var AllModules = new Module();
+
+        gvModules.DataSource = AllModules.SelectAllModules(Convert.ToInt32(dpSearchSubject.SelectedValue));
+        gvModules.DataBind();
+
+    }
+
 
     private void GetModule(int ModuleID)
     {
@@ -79,6 +97,8 @@ public partial class Admin_Modules : System.Web.UI.Page
         NewModule.ModuleActive = chkActive.Checked;
         NewModule.SubjectID = Convert.ToInt32(dpSubject.SelectedValue);
         NewModule.UpdateModule();
+
+        Response.Redirect(Request.Path);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

@@ -136,20 +136,27 @@ public class Module
     }
 
 
-    public DataTable SelectAllModules()
+    public DataTable SelectAllModules(int SubjectID)
     {
         string sqlText = String.Empty;
 
         sqlText = "SELECT * "
                 + "FROM Module "
                 + "JOIN Subject "
-                + "ON fkSubject_ID = pkSubject_ID "
-                + "ORDER BY Module_Name";
+                + "ON fkSubject_ID = pkSubject_ID ";
+
+                if(SubjectID > 0)
+                {
+                    sqlText = sqlText + "WHERE pkSubject_ID = @SubjectID ";
+                }
+
+         sqlText = sqlText + "ORDER BY Module_Name";
 
         var dt = new DataTable();
         using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
+            adapter.SelectCommand.Parameters.AddWithValue("@SubjectID", SubjectID);
             adapter.Fill(dt);
         }
 

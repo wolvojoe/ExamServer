@@ -247,3 +247,23 @@ th{
     margin-left: auto;
     margin-right: auto;
 }
+
+.Search{
+
+   border: 1px solid #808080;
+   width: 748px;
+   height: 50px;
+   margin-top:10px;
+   margin-bottom:10px;
+   margin-left: auto;
+   margin-right: auto;
+   background-color:#ffffff;
+   text-align:center;
+
+}
+
+.RowSearch{
+    margin: 12px;
+    float:left;
+}
+

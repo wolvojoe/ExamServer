@@ -11,6 +11,16 @@
             <h2>Modules</h2>
         </div>
 
+        <div class="Search">
+
+            <div class="RowSearch">
+                <asp:Label ID="lblSearchSubject" runat="server" Text="Subject:"></asp:Label>
+
+                <asp:DropDownList ID="dpSearchSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="SearchModules" AutoPostBack="True"></asp:DropDownList>
+            </div>
+
+        </div>
+
         <div class="GridRow">
             <asp:GridView ID="gvModules" runat="server" AllowPaging="True" AutoGenerateColumns="False">
                 <Columns>
