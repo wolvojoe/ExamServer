@@ -118,7 +118,7 @@ public class Question
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Question (Question_Name,Question_Description, Question_Active, fkModule_ID, fkQuestionType_ID) "
+        sqlText = "INSERT INTO Question (Question_Name,Question_Description, Question_Active, fkModule_ID, fkQuestion_Type_ID) "
                 + "VALUES "
                 + "(@QuestionName,@QuestionDescription, @QuestionActive, @ModuleID, @QuestionTypeID)";
 

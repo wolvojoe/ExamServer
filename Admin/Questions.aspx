@@ -32,7 +32,21 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True">
+            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField HeaderText="Question Name" DataField="Question_Name"/>
+                    <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>
+                    <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>
+                    <asp:BoundField HeaderText="Active" DataField="Question_Active"/>
+
+                    <asp:TemplateField HeaderText="Edit">
+                      <ItemTemplate>
+                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit"  NavigateUrl='<%# Eval("pkQuestion_ID", "questions.aspx?ID={0}") %>'>
+                           <img class="TableImage" src="../Images/png/wrench-3x.png"/>
+                       </asp:HyperLink>
+                      </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
         </div>
 
@@ -66,7 +80,9 @@
             </div>
 
             <div class="RowValue">
-                <asp:DropDownList ID="dpSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="SubjectSelected"></asp:DropDownList>
+                <asp:DropDownList ID="dpSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="SubjectSelected" AutoPostBack="True" AppendDataBoundItems="true">
+                    <asp:ListItem Text=" - Select - " Value="0" />
+                </asp:DropDownList>
             </div>
         </div>
 
@@ -76,7 +92,9 @@
             </div>
 
             <div class="RowValue">
-                <asp:DropDownList ID="dpModule" runat="server" CssClass="DropDown"></asp:DropDownList>
+                <asp:DropDownList ID="dpModule" runat="server" CssClass="DropDown" AppendDataBoundItems="true">
+                    <asp:ListItem Text=" - Select - " Value="0" />
+                </asp:DropDownList>
             </div>
         </div>
 
@@ -86,7 +104,9 @@
             </div>
 
             <div class="RowValue">
-                <asp:DropDownList ID="dpQuestionType" runat="server" CssClass="DropDown"></asp:DropDownList>
+                <asp:DropDownList ID="dpQuestionType" runat="server" CssClass="DropDown" AppendDataBoundItems="true">
+                    <asp:ListItem Text=" - Select - " Value="0" />
+                </asp:DropDownList>
             </div>
         </div>
 

@@ -16,6 +16,7 @@ public partial class Admin_Questions : System.Web.UI.Page
             GetQuestions();
             GetSubjectList();
             GetSubjectSearchList();
+            GetQuestionTypes();
         }
 
         if (Request.QueryString["ID"] != null && IsPostBack == false)
@@ -49,15 +50,34 @@ public partial class Admin_Questions : System.Web.UI.Page
         dpSearchSubject.DataTextField = "Subject_Name";
         dpSearchSubject.DataValueField = "pkSubject_ID";
         dpSearchSubject.DataBind();
+
     }
+
+    private void GetQuestionTypes()
+    {
+        var QuestionType = new Question_Type();
+        dpQuestionType.DataSource = QuestionType.SelectAllQuestionTypes();
+        dpQuestionType.DataTextField = "Question_Type_Name";
+        dpQuestionType.DataValueField = "pkQuestion_Type_ID";
+        dpQuestionType.DataBind();
+
+    }
+
 
     private void GetModuleList()
     {
         dpModule.Items.Clear();
+
+        ListItem select = new ListItem();
+        select.Text = " - Select - ";
+        select.Value = "0";
+
+        dpModule.Items.Add(select);
+
         var ModuleList = new Module();
         dpModule.DataSource = ModuleList.SelectAllModules(Convert.ToInt32(dpSubject.SelectedValue));
-        dpModule.DataTextField = "Subject_Name";
-        dpModule.DataValueField = "pkSubject_ID";
+        dpModule.DataTextField = "Module_Name";
+        dpModule.DataValueField = "pkModule_ID";
         dpModule.DataBind();
 
     }
@@ -65,10 +85,17 @@ public partial class Admin_Questions : System.Web.UI.Page
     private void GetModuleSearchList()
     {
         dpSearchModule.Items.Clear();
+
+        ListItem select = new ListItem();
+        select.Text = " - Select - ";
+        select.Value = "0";
+
+        dpSearchModule.Items.Add(select);
+
         var ModuleList = new Module();
         dpSearchModule.DataSource = ModuleList.SelectAllModules(Convert.ToInt32(dpSearchSubject.SelectedValue));
-        dpSearchModule.DataTextField = "Subject_Name";
-        dpSearchModule.DataValueField = "pkSubject_ID";
+        dpSearchModule.DataTextField = "Module_Name";
+        dpSearchModule.DataValueField = "pkModule_ID";
         dpSearchModule.DataBind();
     }
 
@@ -172,7 +199,12 @@ public partial class Admin_Questions : System.Web.UI.Page
     protected void SearchSubjectSelected(object sender, EventArgs e)
     {
         GetModuleSearchList();
+        GetQuestions();
     }
 
+    protected void QuestionTypeSelected(object sender, EventArgs e)
+    {
+        GetQuestionTypes();
+    }
 
 }

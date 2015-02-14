@@ -131,4 +131,26 @@ public class Question_Type
         return true;
     }
 
+
+
+    public DataTable SelectAllQuestionTypes()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Question_Type "
+                + "ORDER BY Question_Type_Name";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
+
+
 }
