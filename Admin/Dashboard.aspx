@@ -5,5 +5,35 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    <div class="ContainerContent">
+
+        <div class="HalfContentLeft">
+            <div class="SubHeader">
+                <h2>Results</h2>
+            </div>
+        </div>
+
+        <div class="HalfContentRight">
+            <div class="SubHeader">
+                <h2>Exams</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="ContainerContent">
+        <div class="HalfContentLeft">
+            <div class="SubHeader">
+                <h2>Results</h2>
+            </div>
+        </div>
+
+        <div class="HalfContentRight">
+            <div class="SubHeader">
+                <h2>Exams</h2>
+            </div>
+        </div>
+
+    </div>
+
 </asp:Content>
 
