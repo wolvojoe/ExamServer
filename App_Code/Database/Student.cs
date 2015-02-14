@@ -17,7 +17,7 @@ public class Student
     public string StudentEmail;
     public string StudentPassword;
     public bool StudentActive;
-    public int StudentGroupID;
+    public int StudentDepartmentID;
 
 	public Student()
 	{
@@ -49,7 +49,7 @@ public class Student
             StudentEmail = Convert.ToString(dt.Rows[0]["Student_Email"]);
             StudentPassword = Convert.ToString(dt.Rows[0]["Student_Password"]);
             StudentActive = Convert.ToBoolean(dt.Rows[0]["Student_Active"]);
-            StudentGroupID = Convert.ToInt32(dt.Rows[0]["fkGroup_ID"]);
+            StudentDepartmentID = Convert.ToInt32(dt.Rows[0]["fkDepartment_ID"]);
             return true;
         }
         else
@@ -61,7 +61,7 @@ public class Student
 
 
 
-    public bool UpdateGroup()
+    public bool UpdateStudent()
     {
         String sqlText;
         String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
@@ -78,7 +78,7 @@ public class Student
                 + "Student_Email = @StudentEmail, "
                 + "Student_Password = @StudentPassword, "
                 + "Student_Active = @StudentActive, "
-                + "fkGroup_ID = @StudentGroupID "
+                + "fkDepartment_ID = @StudentDepartmentID "
                 + "WHERE pkStudent_ID = @StudentID";
 
         cmd.CommandText = sqlText;
@@ -91,7 +91,7 @@ public class Student
         cmd.Parameters.AddWithValue("@StudentEmail", StudentEmail);
         cmd.Parameters.AddWithValue("@StudentPassword", StudentPassword);
         cmd.Parameters.AddWithValue("@StudentActive", StudentActive);
-        cmd.Parameters.AddWithValue("@StudentGroupID", StudentGroupID);
+        cmd.Parameters.AddWithValue("@StudentDepartmentID", StudentDepartmentID);
 
         try
         {
@@ -112,7 +112,7 @@ public class Student
 
 
 
-    public bool InsertGroup()
+    public bool InsertStudent()
     {
         String sqlText;
         String connStr = WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString;
@@ -122,10 +122,10 @@ public class Student
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Student (Student_First_Name,Student_Last_Name, Student_Email, Student_Password, Student_Active," 
-                + " fkGroup_ID) "
+        sqlText = "INSERT INTO Student (Student_First_Name,Student_Last_Name, Student_Email, Student_Password, Student_Active, Student_Auth_Code, " 
+                + " fkDepartment_ID) "
                 + "VALUES "
-                + "(@StudentFirstName,@StudentLastName, @StudentEmail, @StudentPassword, @StudentActive, @StudentGroupID)";
+                + "(@StudentFirstName,@StudentLastName, @StudentEmail, @StudentPassword, @StudentActive, newid(), @StudentDepartmentID)";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
@@ -135,7 +135,7 @@ public class Student
         cmd.Parameters.AddWithValue("@StudentEmail", StudentEmail);
         cmd.Parameters.AddWithValue("@StudentPassword", StudentPassword);
         cmd.Parameters.AddWithValue("@StudentActive", StudentActive);
-        cmd.Parameters.AddWithValue("@StudentGroupID", StudentGroupID);
+        cmd.Parameters.AddWithValue("@StudentDepartmentID", StudentDepartmentID);
 
         try
         {
@@ -151,6 +151,35 @@ public class Student
         }
 
         return true;
+    }
+
+
+    public DataTable SelectAllStudents(int DepartmentID)
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Student "
+                + "JOIN Department "
+                + "ON pkDepartment_ID = fkDepartment_ID ";
+
+        if (DepartmentID > 0)
+        {
+            sqlText = sqlText + "WHERE pkDepartment_ID = @DepartmentID ";
+        }
+
+        sqlText = sqlText + "ORDER BY fkDepartment_ID";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
     }
 
 
