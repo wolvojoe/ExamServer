@@ -11,8 +11,20 @@
             <h2>Question</h2>
         </div>
 
+        <div class="Search">
+
+            <div class="RowSearch">
+                <asp:Label ID="lblSearchModule" runat="server" Text="Module:"></asp:Label>
+
+                <asp:DropDownList ID="dpSearchModule" runat="server" CssClass="DropDown" OnSelectedIndexChanged="Search" AutoPostBack="True" AppendDataBoundItems="true">
+                    <asp:ListItem Text=" - Select - " Value="0" />
+                </asp:DropDownList>
+            </div>
+
+        </div>
+
         <div class="GridRow">
-            <asp:GridView ID="gvModules" runat="server" AllowPaging="True">
+            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True">
             </asp:GridView>
         </div>
 
@@ -22,11 +34,21 @@
 
         <div class="Row">
             <div class="RowContent">
-                <asp:Label ID="lblName" runat="server" Text="Name:"></asp:Label>
+                <asp:Label ID="lblName" runat="server" Text="Question:"></asp:Label>
             </div>
 
             <div class="RowValue">
                 <asp:TextBox ID="txtName" runat="server" CssClass="TextBox"></asp:TextBox>
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblDescription" runat="server" Text="Description:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:TextBox ID="txtDescription" runat="server" CssClass="TextBox"></asp:TextBox>
             </div>
         </div>
 
@@ -37,6 +59,16 @@
 
             <div class="RowValue">
                 <asp:DropDownList ID="dpSubject" runat="server" CssClass="DropDown"></asp:DropDownList>
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblQuestionType" runat="server" Text="Question Type:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:DropDownList ID="dpQuestionType" runat="server" CssClass="DropDown"></asp:DropDownList>
             </div>
         </div>
 

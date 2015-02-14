@@ -15,7 +15,7 @@
 
         <div class="HalfContentRight">
             <div class="SubHeader">
-                <h2>Exams</h2>
+                <h2>Students</h2>
             </div>
         </div>
     </div>
@@ -23,13 +23,13 @@
     <div class="ContainerContent">
         <div class="HalfContentLeft">
             <div class="SubHeader">
-                <h2>Results</h2>
+                <h2>Exams</h2>
             </div>
         </div>
 
         <div class="HalfContentRight">
             <div class="SubHeader">
-                <h2>Exams</h2>
+                <h2>Questions</h2>
             </div>
         </div>
 
