@@ -23,7 +23,7 @@
 			 </li>
 			 <li><a href="#">Students</a>
 				<ul>
-				   <li><a href="#">Groups</a></li>
+				   <li><a href="Departments.aspx">Departments</a></li>
                    <li><a href="#">Students</a></li>
 				</ul>         
 			 </li>
