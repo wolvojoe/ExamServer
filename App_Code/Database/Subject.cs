@@ -38,7 +38,7 @@ public class Subject
 
         if (dt.Rows.Count == 1)
         {
-            SubjectID = Convert.ToInt32(dt.Rows[0]["pkStudent_ID"]);
+            SubjectID = Convert.ToInt32(dt.Rows[0]["pkSubject_ID"]);
             SubjectName = Convert.ToString(dt.Rows[0]["Subject_Name"]);
             SubjectActive = Convert.ToBoolean(dt.Rows[0]["Subject_Active"]);
             return true;

@@ -12,7 +12,22 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvSubjects" runat="server" AllowPaging="True">
+            <asp:GridView ID="gvSubjects" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+
+                <Columns>
+                    <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>
+                    <asp:BoundField HeaderText="Active" DataField="Subject_Active"/>
+
+                    <asp:TemplateField HeaderText="Edit">
+                      <ItemTemplate>
+                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit"  NavigateUrl='<%# Eval("pkSubject_ID", "subjects.aspx?ID={0}") %>'>
+                           <img class="TableImage" src="../Images/png/wrench-3x.png"/>
+                       </asp:HyperLink>
+                      </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+
             </asp:GridView>
         </div>
 

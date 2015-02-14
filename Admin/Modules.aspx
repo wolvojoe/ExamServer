@@ -16,7 +16,9 @@
             <div class="RowSearch">
                 <asp:Label ID="lblSearchSubject" runat="server" Text="Subject:"></asp:Label>
 
-                <asp:DropDownList ID="dpSearchSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="SearchModules" AutoPostBack="True"></asp:DropDownList>
+                <asp:DropDownList ID="dpSearchSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="Search" AutoPostBack="True" AppendDataBoundItems="true">
+                    <asp:ListItem Text=" - Select - " Value="0" />
+                </asp:DropDownList>
             </div>
 
         </div>

@@ -47,16 +47,9 @@ public partial class Admin_Modules : System.Web.UI.Page
 
     }
 
+
+
     private void GetModules()
-    {
-        var AllModules = new Module();
-
-        gvModules.DataSource = AllModules.SelectAllModules(0);
-        gvModules.DataBind();
-
-    }
-
-    protected void SearchModules(object sender, EventArgs e)
     {
         var AllModules = new Module();
 
@@ -64,6 +57,8 @@ public partial class Admin_Modules : System.Web.UI.Page
         gvModules.DataBind();
 
     }
+
+
 
 
     private void GetModule(int ModuleID)
@@ -117,6 +112,11 @@ public partial class Admin_Modules : System.Web.UI.Page
 
         GetModules();
 
+    }
+
+    protected void Search(object sender, EventArgs e)
+    {
+        GetModules();
     }
 
 }
