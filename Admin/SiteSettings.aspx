@@ -20,6 +20,20 @@
             </div>
         </div>
 
+        <div class="SubHeader">
+            <h2>Registration</h2>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblAllowExternalRegistration" runat="server" Text="Allow External Registration:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:CheckBox ID="chkExternalReg" runat="server" />  
+            </div>
+        </div>
+
         <div class="Row">
             <div class="RowValue">
                 <asp:Button ID="btnSave" runat="server" Text="Save" class="Button" OnClick="btnSave_Click" />

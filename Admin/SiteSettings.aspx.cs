@@ -11,21 +11,44 @@ public partial class Admin_SiteSettings : System.Web.UI.Page
     {
         lblPageTitle.Text = "Site Settings";
 
-        GetSiteSettings();
+        if (Page.IsPostBack == false)
+        {
+            GetSiteSettings();
+        }
     }
 
 
     private void GetSiteSettings()
+    {
+        GetSiteName();
+        GetSiteExternalReg();
+    }
+
+    private void GetSiteName()
     {
         var AllSettings = new Setting();
         AllSettings.SettingID = 1;
         AllSettings.SelectSettingByID();
 
         txtSiteName.Text = AllSettings.SettingValue;
+    }
 
+    private void GetSiteExternalReg()
+    {
+        var AllSettings = new Setting();
+        AllSettings.SettingID = 3;
+        AllSettings.SelectSettingByID();
+
+        chkExternalReg.Checked = Convert.ToBoolean(AllSettings.SettingValue);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
+    {
+        UpdateSiteName();
+        UpdateSiteExternalReg();
+    }
+
+    private void UpdateSiteName()
     {
         var AllSettings = new Setting();
         AllSettings.SettingID = 1;
@@ -33,4 +56,14 @@ public partial class Admin_SiteSettings : System.Web.UI.Page
         AllSettings.SettingValue = txtSiteName.Text;
         AllSettings.UpdateSetting();
     }
+
+    private void UpdateSiteExternalReg()
+    {
+        var AllSettings = new Setting();
+        AllSettings.SettingID = 3;
+        AllSettings.SelectSettingByID();
+        AllSettings.SettingValue = Convert.ToString(chkExternalReg.Checked);
+        AllSettings.UpdateSetting();
+    }
+
 }
