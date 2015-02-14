@@ -16,7 +16,7 @@
             <div class="RowSearch">
                 <asp:Label ID="lblSearchSubject" runat="server" Text="Subject:"></asp:Label>
 
-                <asp:DropDownList ID="dpSearchSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="Search" AutoPostBack="True" AppendDataBoundItems="true">
+                <asp:DropDownList ID="dpSearchSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="SearchSubjectSelected" AutoPostBack="True" AppendDataBoundItems="true">
                     <asp:ListItem Text=" - Select - " Value="0" />
                 </asp:DropDownList>
             </div>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="RowValue">
-                <asp:DropDownList ID="dpSubject" runat="server" CssClass="DropDown"></asp:DropDownList>
+                <asp:DropDownList ID="dpSubject" runat="server" CssClass="DropDown" OnSelectedIndexChanged="SubjectSelected"></asp:DropDownList>
             </div>
         </div>
 

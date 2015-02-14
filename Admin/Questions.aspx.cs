@@ -15,6 +15,7 @@ public partial class Admin_Questions : System.Web.UI.Page
         {
             GetQuestions();
             GetSubjectList();
+            GetSubjectSearchList();
         }
 
         if (Request.QueryString["ID"] != null && IsPostBack == false)
@@ -39,11 +40,36 @@ public partial class Admin_Questions : System.Web.UI.Page
         dpSubject.DataValueField = "pkSubject_ID";
         dpSubject.DataBind();
 
+    }
+
+    private void GetSubjectSearchList()
+    {
+        var SubjectList = new Subject();
         dpSearchSubject.DataSource = SubjectList.SelectAllSubjects();
         dpSearchSubject.DataTextField = "Subject_Name";
         dpSearchSubject.DataValueField = "pkSubject_ID";
         dpSearchSubject.DataBind();
+    }
 
+    private void GetModuleList()
+    {
+        dpModule.Items.Clear();
+        var ModuleList = new Module();
+        dpModule.DataSource = ModuleList.SelectAllModules(Convert.ToInt32(dpSubject.SelectedValue));
+        dpModule.DataTextField = "Subject_Name";
+        dpModule.DataValueField = "pkSubject_ID";
+        dpModule.DataBind();
+
+    }
+
+    private void GetModuleSearchList()
+    {
+        dpSearchModule.Items.Clear();
+        var ModuleList = new Module();
+        dpSearchModule.DataSource = ModuleList.SelectAllModules(Convert.ToInt32(dpSearchSubject.SelectedValue));
+        dpSearchModule.DataTextField = "Subject_Name";
+        dpSearchModule.DataValueField = "pkSubject_ID";
+        dpSearchModule.DataBind();
     }
 
 
@@ -138,7 +164,15 @@ public partial class Admin_Questions : System.Web.UI.Page
         GetQuestions();
     }
 
+    protected void SubjectSelected(object sender, EventArgs e)
+    {
+        GetModuleList();
+    }
 
+    protected void SearchSubjectSelected(object sender, EventArgs e)
+    {
+        GetModuleSearchList();
+    }
 
 
 }
