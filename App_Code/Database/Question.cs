@@ -148,6 +148,39 @@ public class Question
     }
 
 
+    public DataTable SelectAllQuestions(int SubjectID, int ModuleID)
+    {
+        string sqlText = String.Empty;
 
+        sqlText = "SELECT * "
+                + "FROM Question "
+                + "JOIN Module "
+                + "ON pkModule_ID = fkModule_ID "
+                + "JOIN Subject "
+                + "ON pkSubject_ID = fkSubject_ID ";
+
+        if (ModuleID > 0)
+        {
+            sqlText = sqlText + "WHERE pkModule_ID = @ModuleID ";
+        }
+        else if (SubjectID > 0)
+        {
+            sqlText = sqlText + "WHERE pkSubject_ID = @SubjectID ";
+        }
+
+        sqlText = sqlText + "ORDER BY Subject_Name";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@SubjectID", SubjectID);
+            adapter.SelectCommand.Parameters.AddWithValue("@ModuleID", SubjectID);
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
 
 }
