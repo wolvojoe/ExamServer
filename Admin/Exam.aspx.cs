@@ -113,6 +113,7 @@ public partial class Admin_Exam : System.Web.UI.Page
 
         InsertExam();
 
+        Response.Redirect("exams.aspx");
     }
 
 }
