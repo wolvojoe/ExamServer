@@ -72,17 +72,33 @@ h2 {
     padding:5px;
 }
 
+.RowPara{
+    max-width: 500px;
+    height:80px;
+    float:none;
+    margin:5px;
+    margin-left:10px;
+    margin-right:10px;
+    padding:5px;
+}
+
 .RowContent{
     float:left;
 }
 
 .RowValue{
+    margin-right:5px;
     float:right;
 }
 
 .TextBox{
     width:220px;
     height:20px;
+}
+
+.TextBoxPara{
+    width:220px;
+    height:70px;
 }
 
 .DropDown{

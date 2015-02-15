@@ -84,6 +84,7 @@ public class Question
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
+        cmd.Parameters.AddWithValue("@QuestionID", QuestionID);
         cmd.Parameters.AddWithValue("@QuestionName", QuestionName);
         cmd.Parameters.AddWithValue("@QuestionDescription", QuestionDescription);
         cmd.Parameters.AddWithValue("@QuestionActive", QuestionActive);

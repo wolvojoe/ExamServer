@@ -10,6 +10,7 @@ public partial class Admin_Questions : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         lblPageTitle.Text = "Questions";
+        btnAnswers.Visible = false;
 
         if (IsPostBack == false)
         {
@@ -24,7 +25,7 @@ public partial class Admin_Questions : System.Web.UI.Page
             int QuestionID = Convert.ToInt32(Request.QueryString["ID"]);
             GetQuestion(QuestionID);
             btnSave.Text = "Update";
-
+            btnAnswers.Visible = true;
         }
         else
         {
@@ -122,6 +123,14 @@ public partial class Admin_Questions : System.Web.UI.Page
         txtDescription.Text = GetQuestion.QuestionDescription;
         chkActive.Checked = GetQuestion.QuestionActive;
 
+        var GetModule = new Module();
+        GetModule.ModuleID = GetQuestion.ModuleID;
+        GetModule.SelectModuleByID();
+
+        dpSubject.SelectedValue = Convert.ToString(GetModule.SubjectID);
+
+        GetModuleList();
+
         dpModule.SelectedValue = Convert.ToString(GetQuestion.ModuleID);
 
         dpQuestionType.SelectedValue = Convert.ToString(GetQuestion.QuestionTypeID);
@@ -183,6 +192,11 @@ public partial class Admin_Questions : System.Web.UI.Page
 
         GetQuestions();
 
+    }
+
+    protected void btnAnswers_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("answers.aspx?ID=" + Request.QueryString["ID"]);
     }
 
 

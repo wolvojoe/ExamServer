@@ -145,4 +145,32 @@ public class Answer
         return true;
     }
 
+
+    public DataTable SelectAllAnswers(int QuestionID)
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Answer ";
+
+                if (QuestionID > 0)
+                {
+                    sqlText = sqlText + "WHERE fkQuestion_ID = @QuestionID ";
+                }
+
+                sqlText = sqlText + "ORDER BY Answer_Name";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
+
+
+
 }

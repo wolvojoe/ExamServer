@@ -54,23 +54,23 @@
             <h2>New Question</h2>
         </div>
 
-        <div class="Row">
+        <div class="RowPara">
             <div class="RowContent">
                 <asp:Label ID="lblName" runat="server" Text="Question:"></asp:Label>
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtName" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="txtName" runat="server" CssClass="TextBoxPara" Rows="4" TextMode="MultiLine"></asp:TextBox>
             </div>
         </div>
 
-        <div class="Row">
+        <div class="RowPara">
             <div class="RowContent">
                 <asp:Label ID="lblDescription" runat="server" Text="Description:"></asp:Label>
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtDescription" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="txtDescription" runat="server" CssClass="TextBoxPara" Rows="4" TextMode="MultiLine"></asp:TextBox>
             </div>
         </div>
 
@@ -121,9 +121,15 @@
         </div>
 
         <div class="Row">
+
             <div class="RowValue">
                 <asp:Button ID="btnSave" runat="server" Text="Create" class="Button" OnClick="btnSave_Click" />
             </div>
+
+            <div class="RowValue">
+                <asp:Button ID="btnAnswers" runat="server" Text="Answers" Visible="false" class="Button" OnClick="btnAnswers_Click" />
+            </div>
+
         </div>
 
     </div>
