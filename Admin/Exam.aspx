@@ -7,7 +7,8 @@
 
     <script>
         $(function () {
-            $("#<%=txtDateOpen.ClientID%>").datepicker();
+            $("#<%=txtOpenDate.ClientID%>").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("#<%=txtClosedDate.ClientID%>").datepicker({ dateFormat: 'yy-mm-dd' });
         });
 
     </script>
@@ -44,7 +45,7 @@
 
         <div class="Row">
             <div class="RowContent">
-                <asp:Label ID="lblDateOpenEnabled" runat="server" Text="Enable Open Date:"></asp:Label>
+                <asp:Label ID="lblEnableOpenDate" runat="server" Text="Enable Open Date:"></asp:Label>
             </div>
 
             <div class="RowValue">
@@ -54,11 +55,103 @@
 
         <div class="Row">
             <div class="RowContent">
-                <asp:Label ID="lblDateOpen" runat="server" Text="Date Open:"></asp:Label>
+                <asp:Label ID="lblOpenDate" runat="server" Text="Open Date:"></asp:Label>
             </div>
 
             <div class="RowValue">
-                <asp:TextBox ID="txtDateOpen" runat="server" CssClass="TextBox"></asp:TextBox>
+                <asp:TextBox ID="txtOpenDate" runat="server" CssClass="TextBox"></asp:TextBox>
+            </div>
+        </div>
+
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblEnableClosedDate" runat="server" Text="Enable Closed Date:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:CheckBox ID="chkEnableClosedDate" runat="server" /> 
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblClosedDate" runat="server" Text="Closed Date:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:TextBox ID="txtClosedDate" runat="server" CssClass="TextBox"></asp:TextBox>
+            </div>
+        </div>
+
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblEnableTimeLimit" runat="server" Text="Enable Time Limit:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:CheckBox ID="chkEnableTimeLimit" runat="server" /> 
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblTimeLimit" runat="server" Text="Time Limit:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:TextBox ID="txtTimeLimit" runat="server" CssClass="TextBox" TextMode="Time">60</asp:TextBox>
+            </div>
+        </div>
+
+
+
+
+        <div class="SubHeader">
+            <h2>Exam Details</h2>
+        </div>
+
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblNumberOfAttempts" runat="server" Text="Number of Attempts:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:TextBox ID="txtNumberOfAttempts" runat="server" CssClass="TextBox"></asp:TextBox>
+            </div>
+        </div>
+
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblOrderQuestions" runat="server" Text="Order Questions:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:CheckBox ID="chkOrderQuestions" runat="server" /> 
+            </div>
+        </div>
+
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblShuffleAnswers" runat="server" Text="Shuffle Answers:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:CheckBox ID="chkShuffleAnswers" runat="server" /> 
+            </div>
+        </div>
+
+        <div class="Row">
+            <div class="RowContent">
+                <asp:Label ID="lblLearningMode" runat="server" Text="Learning Mode:"></asp:Label>
+            </div>
+
+            <div class="RowValue">
+                <asp:CheckBox ID="chkLearningMode" runat="server" /> 
             </div>
         </div>
 
@@ -72,6 +165,11 @@
                 <asp:TextBox ID="txtPassword" runat="server" CssClass="TextBox"></asp:TextBox>
             </div>
         </div>
+
+
+
+
+
 
         <div class="Row">
             <div class="RowValue">

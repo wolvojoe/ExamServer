@@ -20,7 +20,7 @@ public class Exam
     public bool ExamOpenDateEnabled;
     public DateTime ExamClosedDate;
     public bool ExamClosedDateEnabled;
-    public DateTime ExamTimeLimit;
+    public int ExamTimeLimit;
     public bool ExamTimeLimitEnabled;
     public int ExamAttemptsAllowed;
     public bool ExamQuestionsOrdered;
@@ -62,7 +62,7 @@ public class Exam
             ExamOpenDateEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Open_Date_Enabled"]);
             ExamClosedDate = Convert.ToDateTime(dt.Rows[0]["Exam_Closed_Date"]);
             ExamClosedDateEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Closed_Date_Enabled"]);
-            ExamTimeLimit = Convert.ToDateTime(dt.Rows[0]["Exam_Time_Limit"]);
+            ExamTimeLimit = Convert.ToInt32(dt.Rows[0]["Exam_Time_Limit"]);
             ExamTimeLimitEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Time_Limit_Enabled"]);
             ExamAttemptsAllowed = Convert.ToInt32(dt.Rows[0]["Exam_Attempts_Allowed"]);
             ExamQuestionsOrdered = Convert.ToBoolean(dt.Rows[0]["Exam_Questions_Ordered"]);
@@ -162,12 +162,12 @@ public class Exam
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Subject (Exam_Name, Exam_Date_Created, Exam_Active, Exam_Description, "
+        sqlText = "INSERT INTO Exam (Exam_Name, Exam_Date_Created, Exam_Active, Exam_Description, "
                 + "Exam_Open_Date, Exam_Open_Date_Enabled, Exam_Closed_Date, Exam_Closed_Date_Enabled, "
                 + "Exam_Time_Limit, Exam_Time_Limit_Enabled, Exam_Attempts_Allowed, Exam_Questions_Ordered, "
                 + "Exam_Shuffle_Answers, Exam_Learning_Mode, Exam_Password) "
                 + "VALUES "
-                + "(@ExamName, @ExamDateCreated, @ExamActive, @ExamDescription, @ExamOpenDate, @ExamOpenDateEnabled, "
+                + "(@ExamName, getdate(), @ExamActive, @ExamDescription, @ExamOpenDate, @ExamOpenDateEnabled, "
                 + "@ExamClosedDate, @ExamClosedDateEnabled, @ExamTimeLimit, @ExamTimeLimitEnabled, @ExamAttemptsAllowed, "
                 + "@ExamQuestionsOrdered, @ExamShuffleAnswers, @ExamLearningMode, @ExamPassword)";
 
@@ -175,7 +175,6 @@ public class Exam
         cmd.Parameters.Clear();
 
         cmd.Parameters.AddWithValue("@ExamName", ExamName);
-        cmd.Parameters.AddWithValue("@ExamDateCreated", ExamDateCreated);
         cmd.Parameters.AddWithValue("@ExamActive", ExamActive);
         cmd.Parameters.AddWithValue("@ExamDescription", ExamDescription);
         cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
