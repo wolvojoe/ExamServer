@@ -18,7 +18,7 @@
 
                     <asp:TemplateField HeaderText="Edit">
                       <ItemTemplate>
-                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit"  NavigateUrl='<%# Eval("pkAnswer_ID", "answers.aspx?ID={0}") %>'>
+                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Edit"  NavigateUrl='<%# Eval("fkQuestion_ID", "answers.aspx?ID={0}&AnsID=") + Eval("pkAnswer_ID")  %>'>
                            <img class="TableImage" src="../Images/png/wrench-3x.png"/>
                        </asp:HyperLink>
                       </ItemTemplate>

@@ -118,7 +118,7 @@ public class Answer
 
         sqlText = "INSERT INTO Answer (Answer_Name, Answer_Description, Answer_Order, Answer_Correct, fkQuestion_ID) "
                 + "VALUES "
-                + "(@AnswerName,@AnswerDescription, @AnswerOrder, @AnswerCorrect @QuestionID)";
+                + "(@AnswerName,@AnswerDescription, @AnswerOrder, @AnswerCorrect, @QuestionID)";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
@@ -164,6 +164,7 @@ public class Answer
         using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
+            adapter.SelectCommand.Parameters.AddWithValue("@QuestionID", QuestionID);
             adapter.Fill(dt);
         }
 

@@ -4,25 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections.Specialized;
 
 public partial class Admin_Answers : System.Web.UI.Page
 {
+
+    public int QuestionID;
+    public int AnswerID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         lblPageTitle.Text = "Answers";
 
-        if (IsPostBack == false)
+        GetParams();
+
+        if (IsPostBack == false && QuestionID > 0)
         {
-            GetStudents();
-            GetDepartmentList();
+            GetAnswers();
         }
 
-        if (Request.QueryString["ID"] != null && IsPostBack == false)
+        if (AnswerID > 0 && QuestionID > 0 && IsPostBack == false)
         {
-            int StudentID = Convert.ToInt32(Request.QueryString["ID"]);
-            GetStudent(StudentID);
+            GetAnswer();
             btnSave.Text = "Update";
-
         }
         else
         {
@@ -35,14 +39,14 @@ public partial class Admin_Answers : System.Web.UI.Page
     {
         var AllAnswers = new Answer();
 
-        gvAnswers.DataSource = AllAnswers.SelectAllAnswers(Convert.ToInt32(Request.QueryString["ID"]));
+        gvAnswers.DataSource = AllAnswers.SelectAllAnswers(QuestionID);
         gvAnswers.DataBind();
 
     }
 
 
 
-    private void GetAnswer(int AnswerID)
+    private void GetAnswer()
     {
         var GetAnswer = new Answer();
 
@@ -58,43 +62,68 @@ public partial class Admin_Answers : System.Web.UI.Page
 
     private void InsertAnswer()
     {
-        var NewAnswer = new Student();
-        var Hash = new Hash();
+        var NewAnswer = new Answer();
 
-        NewStudent.StudentFirstName = txtFirstName.Text.Trim();
-        NewStudent.StudentLastName = txtLastName.Text.Trim();
-        NewStudent.StudentEmail = txtEmailUpdate.Text.Trim();
-        NewStudent.StudentPassword = Hash.HashString(txtPasswordUpdate.Text.Trim());
-
-        NewStudent.StudentActive = chkActive.Checked;
-        NewStudent.StudentDepartmentID = Convert.ToInt32(dpDepartment.SelectedValue);
-        NewStudent.InsertStudent();
+        NewAnswer.AnswerName = txtValue.Text.Trim();
+        NewAnswer.AnswerDescription = txtDescription.Text.Trim();
+        NewAnswer.AnswerCorrect = chkCorrect.Checked;
+        NewAnswer.QuestionID = QuestionID;
+        NewAnswer.InsertAnswer();
     }
 
-    private void UpdateAnswer(int AnswerID)
+    private void UpdateAnswer()
     {
-        var UpdateStudent = new Student();
-        var Hash = new Hash();
+        var UpdateAnswer = new Answer();
 
-        UpdateStudent.StudentID = StudentID;
-        UpdateStudent.SelectStudentByID();
+        UpdateAnswer.AnswerID = AnswerID;
+        UpdateAnswer.SelectAnswerByID();
 
-        UpdateStudent.StudentFirstName = txtFirstName.Text.Trim();
-        UpdateStudent.StudentLastName = txtLastName.Text.Trim();
-        UpdateStudent.StudentEmail = txtEmailUpdate.Text.Trim();
+        UpdateAnswer.AnswerName = txtValue.Text.Trim();
+        UpdateAnswer.AnswerDescription = txtDescription.Text.Trim();
+        UpdateAnswer.AnswerCorrect = chkCorrect.Checked;
 
-        if (txtPasswordUpdate.Text.Trim().Length > 0)
+        UpdateAnswer.UpdateAnswer();
+
+
+
+        Response.Redirect(Request.Path + "?ID=" + Convert.ToString(QuestionID));
+    }
+
+    private void GetParams()
+    {
+        if (Request.QueryString["ID"] != null)
         {
-            UpdateStudent.StudentPassword = Hash.HashString(txtPasswordUpdate.Text.Trim());
+            QuestionID = Convert.ToInt32(Request.QueryString["ID"]);
         }
 
-        UpdateStudent.StudentActive = chkActive.Checked;
-        UpdateStudent.StudentDepartmentID = Convert.ToInt32(dpDepartment.SelectedValue);
-
-        UpdateStudent.UpdateStudent();
-
-        Response.Redirect(Request.Path);
+        if (Request.QueryString["AnsID"] != null)
+        {
+            AnswerID = Convert.ToInt32(Request.QueryString["AnsID"]);
+        }
     }
 
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        GetParams();
+
+        if (AnswerID > 0 && QuestionID > 0)
+        {
+            UpdateAnswer();
+
+        }
+        else if (QuestionID > 0)
+        {
+            InsertAnswer();
+        }
+
+
+        if (QuestionID > 0)
+        {
+            GetAnswers();
+        }
+        
+
+    }
 
 }
