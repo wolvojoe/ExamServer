@@ -177,9 +177,29 @@ public class Exam
         cmd.Parameters.AddWithValue("@ExamName", ExamName);
         cmd.Parameters.AddWithValue("@ExamActive", ExamActive);
         cmd.Parameters.AddWithValue("@ExamDescription", ExamDescription);
-        cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
+
+
+        if (ExamOpenDate > DateTime.MinValue)
+        {
+            cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("@ExamOpenDate", DBNull.Value);
+        }
+        
         cmd.Parameters.AddWithValue("@ExamOpenDateEnabled", ExamOpenDateEnabled);
-        cmd.Parameters.AddWithValue("@ExamClosedDate", ExamClosedDate);
+
+
+        if (ExamClosedDate > DateTime.MinValue)
+        {
+            cmd.Parameters.AddWithValue("@ExamClosedDate", ExamClosedDate);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("@ExamClosedDate", DBNull.Value);
+        }
+
         cmd.Parameters.AddWithValue("@ExamClosedDateEnabled", ExamClosedDateEnabled);
         cmd.Parameters.AddWithValue("@ExamTimeLimit", ExamTimeLimit);
         cmd.Parameters.AddWithValue("@ExamTimeLimitEnabled", ExamTimeLimitEnabled);

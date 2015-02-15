@@ -9,7 +9,7 @@ public partial class Admin_Exam : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        lblPageTitle.Text = "Exams";
     }
 
     private void GetExam(int ExamID)
@@ -45,10 +45,18 @@ public partial class Admin_Exam : System.Web.UI.Page
         NewExam.ExamDescription = txtDescription.Text.Trim();
 
         NewExam.ExamOpenDateEnabled = chkEnableOpenDate.Checked;
-        NewExam.ExamOpenDate = Convert.ToDateTime(txtOpenDate.Text.Trim());
+
+        if (txtOpenDate.Text.Length > 0)
+        {
+            NewExam.ExamOpenDate = Convert.ToDateTime(txtOpenDate.Text.Trim());
+        }
 
         NewExam.ExamClosedDateEnabled = chkEnableClosedDate.Checked;
-        NewExam.ExamClosedDate = Convert.ToDateTime(txtClosedDate.Text.Trim());
+
+        if (txtClosedDate.Text.Length > 0)
+        {
+            NewExam.ExamClosedDate = Convert.ToDateTime(txtClosedDate.Text.Trim());
+        }
 
         NewExam.ExamTimeLimitEnabled = chkEnableTimeLimit.Checked;
 
@@ -57,7 +65,11 @@ public partial class Admin_Exam : System.Web.UI.Page
             NewExam.ExamTimeLimit = Convert.ToInt32(txtTimeLimit.Text.Trim());
         }
 
-        NewExam.ExamAttemptsAllowed = Convert.ToInt32(txtNumberOfAttempts.Text.Trim());
+        if (txtNumberOfAttempts.Text.Length > 0)
+        {
+            NewExam.ExamAttemptsAllowed = Convert.ToInt32(txtNumberOfAttempts.Text.Trim());
+        }
+        
         NewExam.ExamQuestionsOrdered = Convert.ToBoolean(chkOrderQuestions.Checked);
         NewExam.ExamShuffleAnswers = Convert.ToBoolean(chkShuffleAnswers.Checked);
         NewExam.ExamLearningMode = Convert.ToBoolean(chkLearningMode.Checked);
