@@ -209,5 +209,25 @@ public class Exam
 
 
 
+    public DataTable SelectAllExams()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Exam "
+                + "ORDER BY Exam_Name";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
+
+
 
 }

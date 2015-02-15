@@ -19,7 +19,7 @@
                    <li><a href="questions.aspx">Questions</a></li>
 				</ul>         
 			 </li>
-			 <li><a href="#">Exams</a>     
+			 <li><a href="exams.aspx">Exams</a>     
 			 </li>
 			 <li><a href="#">Students</a>
 				<ul>

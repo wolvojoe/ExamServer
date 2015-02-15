@@ -6,6 +6,8 @@
 <head runat="server">
     <title>ExamServer</title>
     <link href="StyleSheet.css" rel="stylesheet" />
+    <script src="Scripts/jquery-2.1.3.min.js"></script>
+    <script src="Scripts/jquery-ui-1.11.3.min.js"></script>
 </head>
 <body>
 
