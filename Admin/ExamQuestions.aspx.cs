@@ -13,12 +13,13 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         GetPara();
-        GetAllQuestionBanks();
+
 
         if (IsPostBack == false)
         {
             GetQuestions();
             GetSubjectSearchList();
+            GetAllQuestionBanks();
         }
 
     }
@@ -122,6 +123,8 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
         NewQuestionBank.QuestionID = QuestionID;
         NewQuestionBank.InsertQuestionBank();
 
+        GetAllQuestionBanks();
+
     }
 
 
@@ -130,6 +133,8 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
         var DeleteQuestionBank = new Question_Bank();
         DeleteQuestionBank.QuestionBankID = QuestionBankID;
         DeleteQuestionBank.DeleteQuestionBank();
+
+        GetAllQuestionBanks();
 
     }
 
