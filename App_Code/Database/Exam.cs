@@ -58,9 +58,33 @@ public class Exam
             ExamDateCreated = Convert.ToDateTime(dt.Rows[0]["Exam_Date_Created"]);
             ExamActive = Convert.ToBoolean(dt.Rows[0]["Exam_Active"]);
             ExamDescription = Convert.ToString(dt.Rows[0]["Exam_Description"]);
-            ExamOpenDate = Convert.ToDateTime(dt.Rows[0]["Exam_Open_Date"]);
+            //ExamOpenDate = Convert.ToDateTime(dt.Rows[0]["Exam_Open_Date"]);
+            //ExamOpenDateEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Open_Date_Enabled"]);
+            //ExamClosedDate = Convert.ToDateTime(dt.Rows[0]["Exam_Closed_Date"]);
+
+
+            if (dt.Rows[0]["Exam_Open_Date"] != DBNull.Value)
+            {
+                ExamOpenDate = Convert.ToDateTime(dt.Rows[0]["Exam_Open_Date"]);
+            }
+            else
+            {
+
+            }
+
             ExamOpenDateEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Open_Date_Enabled"]);
-            ExamClosedDate = Convert.ToDateTime(dt.Rows[0]["Exam_Closed_Date"]);
+
+
+            if (dt.Rows[0]["Exam_Closed_Date"] != DBNull.Value)
+            {
+                ExamClosedDate = Convert.ToDateTime(dt.Rows[0]["Exam_Closed_Date"]);
+            }
+            else
+            {
+
+            }
+
+
             ExamClosedDateEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Closed_Date_Enabled"]);
             ExamTimeLimit = Convert.ToInt32(dt.Rows[0]["Exam_Time_Limit"]);
             ExamTimeLimitEnabled = Convert.ToBoolean(dt.Rows[0]["Exam_Time_Limit_Enabled"]);
@@ -108,7 +132,7 @@ public class Exam
                 + "Exam_Questions_Ordered = @ExamQuestionsOrdered, "
                 + "Exam_Shuffle_Answers = @ExamShuffleAnswers, "
                 + "Exam_Learning_Mode = @ExamLearningMode, "
-                + "Exam_Password = @ExamPassword, "
+                + "Exam_Password = @ExamPassword "
 
                 + "WHERE pkExam_ID = @ExamID";
 
@@ -119,9 +143,28 @@ public class Exam
         cmd.Parameters.AddWithValue("@ExamDateCreated", ExamDateCreated);
         cmd.Parameters.AddWithValue("@ExamActive", ExamActive);
         cmd.Parameters.AddWithValue("@ExamDescription", ExamDescription);
-        cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
+
+        if (ExamOpenDate > DateTime.MinValue)
+        {
+            cmd.Parameters.AddWithValue("@ExamOpenDate", ExamOpenDate);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("@ExamOpenDate", DBNull.Value);
+        }
+
         cmd.Parameters.AddWithValue("@ExamOpenDateEnabled", ExamOpenDateEnabled);
-        cmd.Parameters.AddWithValue("@ExamClosedDate", ExamClosedDate);
+
+
+        if (ExamClosedDate > DateTime.MinValue)
+        {
+            cmd.Parameters.AddWithValue("@ExamClosedDate", ExamClosedDate);
+        }
+        else
+        {
+            cmd.Parameters.AddWithValue("@ExamClosedDate", DBNull.Value);
+        }
+
         cmd.Parameters.AddWithValue("@ExamClosedDateEnabled", ExamClosedDateEnabled);
         cmd.Parameters.AddWithValue("@ExamTimeLimit", ExamTimeLimit);
         cmd.Parameters.AddWithValue("@ExamTimeLimitEnabled", ExamTimeLimitEnabled);

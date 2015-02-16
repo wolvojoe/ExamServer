@@ -10,6 +10,25 @@ public partial class Admin_Exam : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         lblPageTitle.Text = "Exams";
+
+
+        if (IsPostBack == false)
+        {
+
+        }
+
+        if (Request.QueryString["ID"] != null && IsPostBack == false)
+        {
+            int ExamID = Convert.ToInt32(Request.QueryString["ID"]);
+            GetExam(ExamID);
+            btnSave.Text = "Update";
+
+        }
+        else
+        {
+
+        }
+
     }
 
     private void GetExam(int ExamID)
@@ -108,10 +127,29 @@ public partial class Admin_Exam : System.Web.UI.Page
     }
 
 
+    protected void btnQuestions_Click(object sender, EventArgs e)
+    {
+
+        int ExamID = Convert.ToInt32(Request.QueryString["ID"]);
+        UpdateExam(ExamID);
+
+
+        Response.Redirect("examquestions.aspx?ID=" + Convert.ToString(ExamID));
+    }
+
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
 
-        InsertExam();
+        if (Request.QueryString["ID"] != null)
+        {
+            int ExamID = Convert.ToInt32(Request.QueryString["ID"]);
+            UpdateExam(ExamID);
+        }
+        else
+        {
+            InsertExam();
+        }
 
         Response.Redirect("exams.aspx");
     }

@@ -7,8 +7,12 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_ExamQuestions : System.Web.UI.Page
 {
+
+    public int ExamID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        GetPara();
 
         if (IsPostBack == false)
         {
@@ -59,6 +63,14 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
 
     }
 
+    private void GetPara()
+    {
+        if (Request.QueryString["ID"] != null)
+        {
+            ExamID = Convert.ToInt32(Request.QueryString["ID"]);
+        }
+    }
+
     protected void Search(object sender, EventArgs e)
     {
         GetQuestions();
@@ -72,10 +84,30 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
 
     protected void btnSelect_Click(object sender, EventArgs e)
     {
+        GetPara();
+
         Button btn = (Button)sender;
 
-        string ID = btn.CommandArgument;
+        int ID = Convert.ToInt32(btn.CommandArgument);
+
+        InsertQuestionBank(ID);
 
     }
+
+    private void InsertModuleBank()
+    {
+
+    }
+
+    private void InsertQuestionBank(int QuestionID)
+    {
+        var NewQuestionBank = new Question_Bank();
+
+        NewQuestionBank.ExamID = ExamID;
+        NewQuestionBank.QuestionID = QuestionID;
+        NewQuestionBank.InsertQuestionBank();
+
+    }
+
 
 }

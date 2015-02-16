@@ -172,9 +172,15 @@
 
 
         <div class="Row">
+
             <div class="RowValue">
                 <asp:Button ID="btnSave" runat="server" Text="Create" class="Button" OnClick="btnSave_Click" />
             </div>
+
+            <div class="RowValue">
+                <asp:Button ID="btnQuestions" runat="server" Text="Questions" class="Button" OnClick="btnQuestions_Click" />
+            </div>
+
         </div>
 
     </div>
