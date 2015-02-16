@@ -13,6 +13,7 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         GetPara();
+        GetAllQuestionBanks();
 
         if (IsPostBack == false)
         {
@@ -94,6 +95,20 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
 
     }
 
+
+    protected void btnRemove_Click(object sender, EventArgs e)
+    {
+        GetPara();
+
+        Button btn = (Button)sender;
+
+        int ID = Convert.ToInt32(btn.CommandArgument);
+
+        DeleteQuestionBank(ID);
+
+    }
+
+
     private void InsertModuleBank()
     {
 
@@ -110,4 +125,22 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
     }
 
 
+    private void DeleteQuestionBank(int QuestionBankID)
+    {
+        var DeleteQuestionBank = new Question_Bank();
+        DeleteQuestionBank.QuestionBankID = QuestionBankID;
+        DeleteQuestionBank.DeleteQuestionBank();
+
+    }
+
+
+    private void GetAllQuestionBanks()
+    {
+        var AllQuestions = new Question_Bank();
+
+        AllQuestions.ExamID = ExamID;
+        gvQuestionBank.DataSource = AllQuestions.SelectQuestionBankByExam();
+        gvQuestionBank.DataBind();
+
+    }
 }

@@ -50,6 +50,29 @@
             </asp:GridView>
         </div>
 
+        <div class="SubHeader">
+            <h2>Exam Questions</h2>
+        </div>
+
+       <div class="GridRow">
+            <asp:GridView ID="gvQuestionBank" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField HeaderText="Question Name" DataField="Question_Name"/>
+                    <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>
+                    <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>
+                    <asp:BoundField HeaderText="Active" DataField="Question_Active"/>
+
+                    <asp:TemplateField HeaderText="Select">
+                      <ItemTemplate>
+
+                          <asp:Button ID="btnRemove" runat="server" CommandArgument=<%# Bind("pkQuestion_Bank_ID") %> CommandName="QuestionBankID" OnClick="btnRemove_Click" />
+                      
+                      </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
+
 
     </div>
 
