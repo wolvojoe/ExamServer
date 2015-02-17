@@ -176,7 +176,7 @@ public class Question
         using (var adapter = new SqlDataAdapter(sqlText, con))
         {
             adapter.SelectCommand.Parameters.AddWithValue("@SubjectID", SubjectID);
-            adapter.SelectCommand.Parameters.AddWithValue("@ModuleID", SubjectID);
+            adapter.SelectCommand.Parameters.AddWithValue("@ModuleID", ModuleID);
             adapter.Fill(dt);
         }
 

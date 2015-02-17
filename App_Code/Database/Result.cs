@@ -158,5 +158,41 @@ public class Result
 
 
 
+    public DataTable SelectAllResult(int DepartmentID)
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM RESULT "
+                + "JOIN EXAM "
+                + "ON pkExam_ID = fkExam_ID "
+                + "JOIN Student "
+                + "ON pkStudent_ID = fkStudent_ID "
+                + "join Department "
+                + "ON fkDepartment_ID = pkDepartment_ID ";
+
+                if (StudentID > 0)
+                {
+                    sqlText = sqlText + "WHERE pkDepartment_ID = @DepartmentID ";
+                }
+
+                sqlText = sqlText + "order by Exam_Date_Created desc ";
+
+
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+            adapter.Fill(dt);
+        }
+
+        return dt;
+
+    }
+
+
+
 
 }

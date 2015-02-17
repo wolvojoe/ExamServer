@@ -17,6 +17,13 @@
                     <asp:BoundField HeaderText="Exam Name" DataField="Exam_Name"/>
                     <asp:BoundField HeaderText="Active" DataField="Exam_Active"/>
 
+                    <asp:TemplateField HeaderText="Questions">
+                      <ItemTemplate>
+                       <asp:HyperLink ID="HyperLink1" runat="server" Text="Questions"  NavigateUrl='<%# Eval("pkExam_ID", "examquestions.aspx?ID={0}") %>'>
+                           <img class="TableImage" src="../Images/png/question-mark-3x.png"/>
+                       </asp:HyperLink>
+                      </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Edit">
                       <ItemTemplate>
