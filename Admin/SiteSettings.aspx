@@ -40,6 +40,17 @@
             </div>
         </div>
 
+
+        <div class="SubHeader">
+            <h2>Upload Data</h2>
+        </div>
+
+        <div class="Row">
+            <div class="RowValue">
+                <asp:Button ID="btnInstallExam" runat="server" Text="Install Exam" class="Button" OnClick="btnInstallExam_Click" />
+            </div>
+        </div>
+
     </div>
 </asp:Content>
 

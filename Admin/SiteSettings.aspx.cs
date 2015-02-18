@@ -66,4 +66,10 @@ public partial class Admin_SiteSettings : System.Web.UI.Page
         AllSettings.UpdateSetting();
     }
 
+
+    protected void btnInstallExam_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("InstallExam.aspx");
+    }
+
 }
