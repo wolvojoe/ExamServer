@@ -72,4 +72,9 @@ public partial class Admin_SiteSettings : System.Web.UI.Page
         Response.Redirect("InstallExam.aspx");
     }
 
+    protected void btnInstallQuestions_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("InstallQuestions.aspx");
+    }
+
 }

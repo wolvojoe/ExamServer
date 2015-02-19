@@ -49,6 +49,11 @@
             <div class="RowValue">
                 <asp:Button ID="btnInstallExam" runat="server" Text="Install Exam" class="Button" OnClick="btnInstallExam_Click" />
             </div>
+
+            <div class="RowValue">
+                <asp:Button ID="btnInstallQuestions" runat="server" Text="Install Questions" class="Button" OnClick="btnInstallQuestions_Click" />
+            </div>
+
         </div>
 
     </div>
