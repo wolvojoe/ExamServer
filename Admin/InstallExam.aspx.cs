@@ -71,10 +71,10 @@ public partial class Admin_InstallExam : System.Web.UI.Page
         
 
         XmlNode AllExams;
-        AllExams = XMLExam.DocumentElement.SelectSingleNode("Exam");
+        AllExams = XMLExam.DocumentElement.SelectSingleNode("Exams");
 
 
-        foreach (XmlNode ExamDetails in AllExams.SelectNodes("Exams"))
+        foreach (XmlNode ExamDetails in AllExams.SelectNodes("Exam"))
         {
             Exam NewExam = new Exam();
 

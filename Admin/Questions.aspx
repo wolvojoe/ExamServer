@@ -32,7 +32,7 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True" AutoGenerateColumns="False" >
                 <Columns>
                     <asp:BoundField HeaderText="Question Name" DataField="Question_Name"/>
                     <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>
