@@ -26,14 +26,7 @@ public class WebService : System.Web.Services.WebService {
     private bool ValidAuth(string strToken)
     {
 
-        var StudentToken = new Student_Token();
-        StudentToken.StudentToken = strToken;
-        StudentToken.SelectStudentTokenByToken();
-        var StudentDetails = new Student();
-        StudentDetails.StudentID = StudentToken.StudentID;
-        StudentDetails.SelectStudentByID();
-
-        if (StudentDetails.StudentID > 0)
+        if (GetStudentID(strToken) > 0)
         {
             return true;
         }
@@ -43,6 +36,23 @@ public class WebService : System.Web.Services.WebService {
         }
 
     }
+
+
+    private int GetStudentID(string strToken)
+    {
+
+        var StudentToken = new Student_Token();
+        StudentToken.StudentToken = strToken;
+        StudentToken.SelectStudentTokenByToken();
+        var StudentDetails = new Student();
+        StudentDetails.StudentID = StudentToken.StudentID;
+        StudentDetails.SelectStudentByID();
+
+        return StudentDetails.StudentID;
+    }
+
+
+
 
     [WebMethod]
     public string StudentLogin(string strStudentEmail, string strStudentPassword)
@@ -89,6 +99,73 @@ public class WebService : System.Web.Services.WebService {
     }
 
 
+
+    [WebMethod]
+    public Question GetQuestion(string strToken, int intQuestionID)
+    {
+        var AllQuestion = new Question();
+
+        if (ValidAuth(strToken) == true)
+        {
+            
+            AllQuestion.QuestionID = intQuestionID;
+
+            AllQuestion.SelectQuestionByID();
+        }
+
+        return AllQuestion;
+    }
+
+
+
+
+
+
+    [WebMethod]
+    public int StartExam(string strToken, int intExam)
+    {
+        var NewResult = new Result();
+
+        if (ValidAuth(strToken) == true)
+        {
+            NewResult.ExamID = intExam;
+            NewResult.StudentID = GetStudentID(strToken);
+            NewResult.InsertResult();
+
+            NewResult.SelectResultByID();
+
+        }
+
+        return NewResult.ResultID;
+    }
+
+
+    [WebMethod]
+    public int EndExam(string strToken, int intResult)
+    {
+        var NewResult = new Result();
+
+        if (ValidAuth(strToken) == true)
+        {
+            NewResult.ResultID = intResult;
+            NewResult.SelectResultByID();
+
+            if (NewResult.StudentID == GetStudentID(strToken));
+            {
+                NewResult.ResultDateTo = DateTime.Now;
+                NewResult.ResultComplete = true;
+                NewResult.UpdateResult();
+            }
+
+
+        }
+
+        return NewResult.ResultID;
+    }
+
+
+
+
     [WebMethod]
     public DataTable GetSubjects(string strToken)
     {
@@ -102,7 +179,6 @@ public class WebService : System.Web.Services.WebService {
         }
 
         return Result;
-
     }
 
 
@@ -139,7 +215,7 @@ public class WebService : System.Web.Services.WebService {
 
 
     [WebMethod]
-    public DataTable GetQuestions(string strToken, int intExamID)
+    public DataTable GetListOfQuestions(string strToken, int intExamID)
     {
         DataTable Result = new DataTable();
 
@@ -149,6 +225,22 @@ public class WebService : System.Web.Services.WebService {
             AllQuestions.ExamID = intExamID;
 
             Result = AllQuestions.SelectQuestionBankByExam();
+        }
+
+        return Result;
+    }
+
+
+    [WebMethod]
+    public DataTable GetAnswers(string strToken, int intQuestionID)
+    {
+        DataTable Result = new DataTable();
+
+        if (ValidAuth(strToken) == true)
+        {
+            var AllAnswers = new WebAnswer();
+            AllAnswers.QuestionID = intQuestionID;
+            Result = AllAnswers.SelectAllAnswers();
         }
 
         return Result;

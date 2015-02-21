@@ -124,25 +124,22 @@ public class Result
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = connObj;
 
-        sqlText = "INSERT INTO Result (Result_Date_From, Result_Date_To, Result_Complete, fkStudent_ID, "
+        sqlText = "INSERT INTO Result (Result_Date_From, Result_Complete, fkStudent_ID, "
                 + " fkMachine_ID, fkExam_ID) "
                 + "VALUES "
-                + "(@ResultDateFrom, @ResultDateTo, @ResultComplete, @StudentID, @MachineID, @ExamID)";
+                + "(getdate(), false, @StudentID, @ExamID)"
+                + "select CAST(Scope_Identity() AS int) ";
 
         cmd.CommandText = sqlText;
         cmd.Parameters.Clear();
 
-        cmd.Parameters.AddWithValue("@ResultDateFrom", ResultDateFrom);
-        cmd.Parameters.AddWithValue("@ResultDateTo", ResultDateTo);
-        cmd.Parameters.AddWithValue("@ResultComplete", ResultComplete);
         cmd.Parameters.AddWithValue("@StudentID", StudentID);
-        cmd.Parameters.AddWithValue("@MachineID", MachineID);
         cmd.Parameters.AddWithValue("@ExamID", ExamID);
 
         try
         {
             connObj.Open();
-            cmd.ExecuteNonQuery();
+            ResultID = (int)cmd.ExecuteScalar();
         }
         finally
         {
@@ -154,8 +151,6 @@ public class Result
 
         return true;
     }
-
-
 
 
     public DataTable SelectAllResult(int DepartmentID)
