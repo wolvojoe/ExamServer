@@ -61,6 +61,45 @@ public class Student
 
 
 
+    public bool SelectStudentByLogin()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Student "
+                + "WHERE Student_Email = @StudentEmail "
+                + "AND Student_Password = @StudentPassword ";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@StudentEmail", StudentEmail);
+            adapter.SelectCommand.Parameters.AddWithValue("@StudentPassword", StudentPassword);
+            adapter.Fill(dt);
+        }
+
+        if (dt.Rows.Count == 1)
+        {
+            StudentID = Convert.ToInt32(dt.Rows[0]["pkStudent_ID"]);
+            StudentFirstName = Convert.ToString(dt.Rows[0]["Student_First_Name"]);
+            StudentLastName = Convert.ToString(dt.Rows[0]["Student_Last_Name"]);
+            StudentEmail = Convert.ToString(dt.Rows[0]["Student_Email"]);
+            StudentPassword = Convert.ToString(dt.Rows[0]["Student_Password"]);
+            StudentActive = Convert.ToBoolean(dt.Rows[0]["Student_Active"]);
+            StudentDepartmentID = Convert.ToInt32(dt.Rows[0]["fkDepartment_ID"]);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+
+
     public bool UpdateStudent()
     {
         String sqlText;
@@ -181,6 +220,9 @@ public class Student
         return dt;
 
     }
+
+
+
 
 
 }

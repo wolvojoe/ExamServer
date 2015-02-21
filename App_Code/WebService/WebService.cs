@@ -21,39 +21,29 @@ public class WebService : System.Web.Services.WebService {
 
 
     [WebMethod]
-    public Student ValidateStudent(string strStudentEmail, string strStudentPassword)
+    public string StudentLogin(string strStudentEmail, string strStudentPassword)
     {
         var Student = new Student();
+        Hash HashPassword = new Hash();
 
         Student.StudentEmail = strStudentEmail;
-        Student.StudentPassword = strStudentPassword;
+        Student.StudentPassword = HashPassword.HashString(strStudentPassword);
 
-        return Student;
+        Student.SelectStudentByLogin();
+
+        var StudentToken = new Student_Token();
+
+        StudentToken.StudentID = Student.StudentID;
+
+        StudentToken.InsertStudentToken();
+
+        StudentToken.SelectStudentTokenByID();
+
+        return StudentToken.StudentToken;
     }
 
 
-    [WebMethod]
-    public Machine ValidateMachine(string strMachineAuthCode)
-    {
-        var Machine = new Machine();
 
-        Machine.MachineAuthCode = strMachineAuthCode;
-        Machine.SelectMachineByCode();
-
-        return Machine;
-    }
-
-
-    [WebMethod]
-    public Exam SelectExam(int intExamID)
-    {
-        var Exam = new Exam();
-
-        Exam.ExamID = intExamID;
-        Exam.SelectExamByID();
-
-        return Exam;
-    }
 
 
 
