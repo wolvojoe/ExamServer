@@ -286,6 +286,7 @@ public class Exam
             adapter.Fill(dt);
         }
 
+        dt.TableName = "Exam";
         return dt;
 
     }

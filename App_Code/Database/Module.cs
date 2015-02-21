@@ -160,6 +160,7 @@ public class Module
             adapter.Fill(dt);
         }
 
+        dt.TableName = "Module";
         return dt;
 
     }

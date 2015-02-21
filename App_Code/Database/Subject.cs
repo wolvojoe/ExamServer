@@ -146,6 +146,7 @@ public class Subject
             adapter.Fill(dt);
         }
 
+        dt.TableName = "Subject";
         return dt;
 
     }
