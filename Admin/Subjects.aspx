@@ -12,7 +12,7 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvSubjects" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+            <asp:GridView ID="gvSubjects" runat="server" AllowPaging="True" pagesize="10"  OnPageIndexChanging="gvSubjects_PageIndexChanging" AutoGenerateColumns="False">
 
                 <Columns>
                     <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>

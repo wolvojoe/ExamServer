@@ -11,7 +11,7 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvDepartments" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+            <asp:GridView ID="gvDepartments" runat="server" AllowPaging="True" pagesize="10" OnPageIndexChanging="gvDepartments_PageIndexChanging" AutoGenerateColumns="False">
 
                 <Columns>
                     <asp:BoundField HeaderText="Department Name" DataField="Department_Name"/>

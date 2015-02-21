@@ -224,7 +224,11 @@ public partial class Admin_Questions : System.Web.UI.Page
 
 
 
-
+    protected void gvQuestions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvQuestions.PageIndex = e.NewPageIndex;
+        GetQuestions();
+    }
 
 
 

@@ -119,4 +119,12 @@ public partial class Admin_Modules : System.Web.UI.Page
         GetModules();
     }
 
+
+
+    protected void gvModules_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvModules.PageIndex = e.NewPageIndex;
+        GetModules();
+    }
+
 }

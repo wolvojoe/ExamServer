@@ -24,7 +24,7 @@
 
 
         <div class="GridRow">
-            <asp:GridView ID="gvStudents" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+            <asp:GridView ID="gvStudents" runat="server" AllowPaging="True" pagesize="10" OnPageIndexChanging="gvStudents_PageIndexChanging" AutoGenerateColumns="False">
 
                 <Columns>
                     <asp:BoundField HeaderText="First Name" DataField="Student_First_Name"/>

@@ -30,9 +30,13 @@
 
         </div>
 
+    
 
         <div class="GridRow">
-            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+
+
+
+            <asp:GridView ID="gvQuestions" runat="server" AllowPaging="True" pagesize="5" AutoGenerateColumns="False" OnPageIndexChanging="gvQuestions_PageIndexChanging">
                 <Columns>
                     <asp:BoundField HeaderText="Question Name" DataField="Question_Name"/>
                     <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>
@@ -48,14 +52,16 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
+
         </div>
 
+   
         <div class="SubHeader">
             <h2>Exam Questions</h2>
         </div>
 
        <div class="GridRow">
-            <asp:GridView ID="gvQuestionBank" runat="server" AllowPaging="True" pagesize="5" AutoGenerateColumns="False" OnPageIndexChanging="gvQuestions_PageIndexChanging">
+            <asp:GridView ID="gvQuestionBank" runat="server" AllowPaging="True" pagesize="10" AutoGenerateColumns="False" OnPageIndexChanging="gvQuestionBank_PageIndexChanging">
                 <Columns>
                     <asp:BoundField HeaderText="Question Name" DataField="Question_Name"/>
                     <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>

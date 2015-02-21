@@ -92,4 +92,12 @@ public partial class Admin_Subjects : System.Web.UI.Page
 
     }
 
+
+
+    protected void gvSubjects_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvSubjects.PageIndex = e.NewPageIndex;
+        GetSubjects();
+    }
+
 }

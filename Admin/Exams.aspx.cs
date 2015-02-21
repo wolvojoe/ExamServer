@@ -32,4 +32,11 @@ public partial class Admin_Exams : System.Web.UI.Page
 
     }
 
+
+    protected void gvExams_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvExams.PageIndex = e.NewPageIndex;
+        GetExams();
+    }
+
 }

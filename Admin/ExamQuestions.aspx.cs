@@ -151,10 +151,16 @@ public partial class Admin_ExamQuestions : System.Web.UI.Page
 
 
 
-    protected void gvQuestions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    protected void gvQuestionBank_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvQuestionBank.PageIndex = e.NewPageIndex;
         GetAllQuestionBanks();
+    }
+
+    protected void gvQuestions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvQuestions.PageIndex = e.NewPageIndex;
+        GetQuestions();
     }
 
 }

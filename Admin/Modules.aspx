@@ -24,7 +24,7 @@
         </div>
 
         <div class="GridRow">
-            <asp:GridView ID="gvModules" runat="server" AllowPaging="True" AutoGenerateColumns="False">
+            <asp:GridView ID="gvModules" runat="server" AllowPaging="True" pagesize="10" OnPageIndexChanging="gvModules_PageIndexChanging" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField HeaderText="Module Name" DataField="Module_Name"/>
                     <asp:BoundField HeaderText="Subject Name" DataField="Subject_Name"/>

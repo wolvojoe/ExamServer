@@ -90,4 +90,11 @@ public partial class Admin_Departments : System.Web.UI.Page
     }
 
 
+
+    protected void gvDepartments_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvDepartments.PageIndex = e.NewPageIndex;
+        GetDepartments();
+    }
+
 }

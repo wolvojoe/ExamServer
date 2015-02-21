@@ -140,5 +140,10 @@ public partial class Admin_Students : System.Web.UI.Page
         GetStudents();
     }
 
+    protected void gvStudents_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStudents.PageIndex = e.NewPageIndex;
+        GetStudents();
+    }
 
 }
