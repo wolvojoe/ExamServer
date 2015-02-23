@@ -117,6 +117,19 @@ public class WebService : System.Web.Services.WebService {
     }
 
 
+    [WebMethod]
+    public WebExam GetExam(string strToken, int intExamID)
+    {
+        var objExam = new WebExam();
+
+        if (ValidAuth(strToken) == true)
+        {
+            objExam.
+        }
+
+        return AllQuestion;
+    }
+
 
 
 
@@ -164,6 +177,36 @@ public class WebService : System.Web.Services.WebService {
     }
 
 
+
+
+    [WebMethod]
+    public bool InsertAnswer(string strToken, Result_Answer objAnswer)
+    {
+        var NewAnswer = new Result_Answer();
+
+        if (ValidAuth(strToken) == true)
+        {
+            NewAnswer = objAnswer;
+            NewAnswer.InsertResultAnswer();
+
+        }
+
+        return true;
+    }
+
+
+
+
+    [WebMethod]
+    public string GetSiteName()
+    {
+        var SiteName = new Setting();
+
+        SiteName.SettingID = 1;
+        SiteName.SelectSettingByID();
+        return SiteName.SettingValue;
+
+    }
 
 
     [WebMethod]
@@ -245,5 +288,9 @@ public class WebService : System.Web.Services.WebService {
 
         return Result;
     }
+
+
+
+
 
 }

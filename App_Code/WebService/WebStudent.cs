@@ -14,6 +14,7 @@ public class WebStudent
     public string StudentLastName;
     public string StudentEmail;
     public int StudentDepartmentID;
+    public string StudentDepartmentName;
 
 	public WebStudent()
 	{
@@ -34,6 +35,15 @@ public class WebStudent
         StudentEmail = StudentDetails.StudentEmail;
         StudentDepartmentID = StudentDetails.StudentDepartmentID;
 
+        var StudentDepartment = new Department();
+
+        StudentDepartment.DepartmentID = StudentDepartmentID;
+        StudentDepartment.SelectDepartmentByID();
+
+        StudentDepartmentName = StudentDepartment.DepartmentName;
+
     }
+
+
 
 }
