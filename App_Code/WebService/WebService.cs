@@ -124,13 +124,12 @@ public class WebService : System.Web.Services.WebService {
 
         if (ValidAuth(strToken) == true)
         {
-            objExam.
+            objExam.ExamID = intExamID;
+            objExam.GetExamByID();
         }
 
-        return AllQuestion;
+        return objExam;
     }
-
-
 
 
 
