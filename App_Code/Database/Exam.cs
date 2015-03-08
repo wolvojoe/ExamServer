@@ -105,6 +105,44 @@ public class Exam
 
 
 
+    public bool ValidatePassword()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT * "
+                + "FROM Exam "
+                + "WHERE pkExam_ID = @ExamID";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@ExamID", ExamID);
+            adapter.Fill(dt);
+        }
+
+        if (dt.Rows.Count == 1)
+        {
+            ExamID = Convert.ToInt32(dt.Rows[0]["pkExam_ID"]);
+
+            if (ExamPassword == Convert.ToString(dt.Rows[0]["Exam_Password"]))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
     public bool UpdateExam()
     {
         String sqlText;

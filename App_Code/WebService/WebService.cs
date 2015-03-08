@@ -133,6 +133,25 @@ public class WebService : System.Web.Services.WebService {
 
 
 
+
+    [WebMethod]
+    public bool ValidatePassword(string strToken, int intExamID, string strPassword)
+    {
+        var objExam = new Exam();
+
+        if (ValidAuth(strToken) == true)
+        {
+            objExam.ExamID = intExamID;
+            objExam.ExamPassword = strPassword;
+            return objExam.ValidatePassword();
+        }
+
+        return false;
+    }
+
+
+
+
     [WebMethod]
     public int StartExam(string strToken, int intExam)
     {

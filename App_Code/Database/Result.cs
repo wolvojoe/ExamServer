@@ -45,10 +45,20 @@ public class Result
         {
             ResultID = Convert.ToInt32(dt.Rows[0]["pkResult_ID"]);
             ResultDateFrom = Convert.ToDateTime(dt.Rows[0]["Result_Date_From"]);
-            ResultDateTo = Convert.ToDateTime(dt.Rows[0]["Result_Date_To"]);
+
+            if (dt.Rows[0]["Result_Date_To"] != DBNull.Value)
+            {
+                ResultDateTo = Convert.ToDateTime(dt.Rows[0]["Result_Date_To"]);
+            }
+
             ResultComplete = Convert.ToBoolean(dt.Rows[0]["Result_Complete"]);
             StudentID = Convert.ToInt32(dt.Rows[0]["fkStudent_ID"]);
-            MachineID = Convert.ToInt32(dt.Rows[0]["fkMachine_ID"]);
+
+            if (dt.Rows[0]["fkMachine_ID"] != DBNull.Value)
+            {
+                MachineID = Convert.ToInt32(dt.Rows[0]["fkMachine_ID"]);
+            }
+
             ExamID = Convert.ToInt32(dt.Rows[0]["fkExam_ID"]);
 
             return true;
@@ -125,9 +135,9 @@ public class Result
         cmd.Connection = connObj;
 
         sqlText = "INSERT INTO Result (Result_Date_From, Result_Complete, fkStudent_ID, "
-                + " fkMachine_ID, fkExam_ID) "
+                + " fkExam_ID) "
                 + "VALUES "
-                + "(getdate(), false, @StudentID, @ExamID)"
+                + "(getdate(), 0, @StudentID, @ExamID)"
                 + "select CAST(Scope_Identity() AS int) ";
 
         cmd.CommandText = sqlText;
