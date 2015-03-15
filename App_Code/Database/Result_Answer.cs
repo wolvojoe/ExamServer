@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Configuration;
 using System.Web.Security;
+using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for Result_Answer
@@ -134,6 +135,35 @@ public class Result_Answer
         }
 
         return true;
+    }
+
+
+
+    public List<int> SelectAnswerByResultID()
+    {
+        string sqlText = String.Empty;
+
+        sqlText = "SELECT fkAnswer_ID "
+                + "FROM Result_Answer "
+                + "WHERE fkResult_ID = @ResultID";
+
+        var dt = new DataTable();
+        using (var con = new SqlConnection(WebConfigurationManager.ConnectionStrings["sitecontent"].ConnectionString))
+        using (var adapter = new SqlDataAdapter(sqlText, con))
+        {
+            adapter.SelectCommand.Parameters.AddWithValue("@ResultID", ResultID);
+            adapter.Fill(dt);
+        }
+
+        List<int> AllResultAnswerIDs = new List<int>();
+
+        foreach(DataRow x in dt.Rows)
+        {
+            AllResultAnswerIDs.Add(Convert.ToInt32(x["fkAnswer_ID"]));
+        }
+
+        return AllResultAnswerIDs;
+
     }
 
 

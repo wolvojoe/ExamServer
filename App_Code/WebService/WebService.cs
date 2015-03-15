@@ -98,6 +98,120 @@ public class WebService : System.Web.Services.WebService {
         return StudentDetails;
     }
 
+    [WebMethod]
+    public Question GetNextQuestion(string strToken, int intResultID)
+    {
+
+        Question objReturnQuestion = new Question();
+            
+        if (ValidAuth(strToken) == true)
+        {
+            //Get Questions
+            List<int> QuestionIDs = new List<int>(); //All questions by Exam
+            List<int> AllQuestionIDs = new List<int>(); //All questions answered
+
+            int QuestiontoReturn; //questionID to return
+
+            var objResult = new Result();
+            objResult.ResultID = intResultID;
+            objResult.SelectResultByID();
+
+            QuestionIDs = GetListOfQuestion(strToken, objResult.ExamID);
+
+            //Get Answered Questions
+
+            //Get AnswerIDs
+            var objAnsweredQuestions = new Result_Answer();
+            objAnsweredQuestions.ResultID = intResultID;
+            List<int> AllResultAnswerIDs = new List<int>();
+            AllResultAnswerIDs = objAnsweredQuestions.SelectAnswerByResultID();
+
+            //Get QuestionIDs
+                
+            foreach(int p in AllResultAnswerIDs)
+            {
+                var objAnswers = new Answer();
+                objAnswers.AnswerID = p;
+
+                objAnswers.SelectAnswerByID();
+
+                AllQuestionIDs.Add(objAnswers.QuestionID);
+
+            }
+
+
+            foreach (int q in QuestionIDs) //if question not answered use next one
+            {
+                if (AllQuestionIDs.Contains(q) == false)
+                {
+                    QuestiontoReturn = q;
+                    objReturnQuestion.QuestionID = QuestiontoReturn;
+                    objReturnQuestion.SelectQuestionByID();
+                }
+            }
+
+        }
+
+            return objReturnQuestion;
+    }
+
+
+
+
+
+
+
+
+    [WebMethod]
+    public List<int> GetListOfQuestion(string strToken, int intExamID)
+    {
+        var AllQuestion = new Question_Bank();
+
+        List<int> QuestionIDs = new List<int>();
+
+        if (ValidAuth(strToken) == true)
+        {
+
+            AllQuestion.ExamID = intExamID;
+            DataTable dtAllQuestions = new DataTable();
+            dtAllQuestions = AllQuestion.SelectQuestionBankByExam();
+
+            foreach (DataRow x in dtAllQuestions.Rows)
+            {
+                QuestionIDs.Add(Convert.ToInt32(x["fkQuestion_ID"]));
+            }
+
+            Exam CheckRandom = new Exam();
+            CheckRandom.ExamID = intExamID;
+            CheckRandom.SelectExamByID();
+
+            if (CheckRandom.ExamQuestionsOrdered == true)
+            {
+
+                // Need to add way to order question bank
+
+                //List<KeyValuePair<int,int>> QuestionsOrdered = new List<KeyValuePair<int,int>>();
+
+                //foreach (int l in QuestionIDs)
+                //{
+                //    Question CheckQuestion = new Question();
+                //    CheckQuestion.QuestionID = l;
+                //    CheckQuestion.SelectQuestionByID();
+
+                //    if(CheckQuestion.ord)
+
+                //}
+
+            }
+            else
+            {
+
+            }
+
+        }
+
+        return QuestionIDs;
+    }
 
 
     [WebMethod]
@@ -114,6 +228,23 @@ public class WebService : System.Web.Services.WebService {
         }
 
         return AllQuestion;
+    }
+
+
+    [WebMethod]
+    public List<WebAnswer> GetAnswersList(string strToken, int intQuestionID)
+    {
+        var AllAnswers = new WebAnswer();
+        List<WebAnswer> ListOfAnswers = new List<WebAnswer>();
+
+        if (ValidAuth(strToken) == true)
+        {
+           AllAnswers.QuestionID = intQuestionID;
+
+           ListOfAnswers = AllAnswers.SelectAllAnswersList();
+        }
+
+        return ListOfAnswers;
     }
 
 
@@ -171,6 +302,43 @@ public class WebService : System.Web.Services.WebService {
     }
 
 
+
+    [WebMethod]
+    public Result GetResult(string strToken, int intResult)
+    {
+        var NewResult = new Result();
+        bool ReturnResult = false;
+
+        if (ValidAuth(strToken) == true)
+        {
+            NewResult.ResultID = intResult;
+            NewResult.SelectResultByID();
+
+            if (GetStudentID(strToken) == NewResult.StudentID)
+            {
+                ReturnResult = true;
+            }
+            else
+            {
+                ReturnResult = false;
+            }
+        }
+
+
+        if (ReturnResult == true)
+        {
+            return NewResult;
+        }
+        else
+        {
+            return new Result();
+        }
+        
+    }
+
+
+
+
     [WebMethod]
     public int EndExam(string strToken, int intResult)
     {
@@ -193,7 +361,6 @@ public class WebService : System.Web.Services.WebService {
 
         return NewResult.ResultID;
     }
-
 
 
 
